@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b0gp1oagnu4c1"]
+
+[ext_resource type="Script" uid="uid://cgrlwx8vg70po" path="res://scripts/shawty.gd" id="1_a70fd"]
+[ext_resource type="Texture2D" uid="uid://dvp28mfycu22v" path="res://hands/hands3.png" id="2_a70fd"]
+[ext_resource type="PackedScene" uid="uid://dcxyte7gqvxg0" path="res://prefabs/beam.tscn" id="3_6otci"]
+[ext_resource type="Texture2D" uid="uid://dplqm6bgcnos" path="res://hands/hands2.png" id="4_page5"]
+[ext_resource type="AudioStream" uid="uid://gkdat88uj5gk" path="res://sound/sfx/pew.mp3" id="5_a8lgc"]
+[ext_resource type="AudioStream" uid="uid://b4ademq0b1lmv" path="res://sound/sfx/gun-trigger-click-01.mp3" id="6_so52j"]
+
+[node name="shawty" type="Node3D" unique_id=1058513632 node_paths=PackedStringArray("HitscanRay")]
+script = ExtResource("1_a70fd")
+altHand = ExtResource("2_a70fd")
+maxSpreadAngle = 30.0
+occupiesBothArms = true
+HitscanRay = NodePath("Hitscan")
+Laser = ExtResource("3_6otci")
+hand = ExtResource("4_page5")
+iconFrame = 1
+
+[node name="Hitscan" type="RayCast3D" parent="." unique_id=892273395]
+target_position = Vector3(0, 0, -200)
+hit_back_faces = false
+debug_shape_custom_color = Color(1, 0.51666665, 0, 1)
+debug_shape_thickness = 5
+
+[node name="gunshot" type="AudioStreamPlayer3D" parent="." unique_id=1940004501]
+stream = ExtResource("5_a8lgc")
+volume_db = 28.877
+max_db = 5.377
+pitch_scale = 0.9
+max_polyphony = 5
+
+[node name="trigger" type="AudioStreamPlayer3D" parent="." unique_id=1223621816]
+stream = ExtResource("6_so52j")
+pitch_scale = 3.0

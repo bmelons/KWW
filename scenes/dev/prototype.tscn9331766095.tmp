@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://capy1o4bi846g"]
+
+[ext_resource type="Script" uid="uid://3bhojjrthkj0" path="res://scripts/Player.gd" id="1_06s8g"]
+[ext_resource type="Texture2D" uid="uid://c1cc0bcse0417" path="res://hands/hands1.png" id="2_knhaw"]
+[ext_resource type="Texture2D" uid="uid://dn83aofwibgea" path="res://hands/hands4.png" id="3_knhaw"]
+[ext_resource type="PackedScene" uid="uid://w3ogjasqrdym" path="res://prefabs/explosion.tscn" id="4_v3j7y"]
+[ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="5_m681r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0tbj7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nb6l6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06s8g"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
+noise_type = 2
+frequency = 0.0153
+fractal_type = 0
+fractal_octaves = 2
+fractal_lacunarity = 1.555
+fractal_gain = 0.14
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t7rhm"]
+noise = SubResource("FastNoiseLite_to3d4")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_to3d4"]
+sky_top_color = Color(0.66399986, 0.52, 1, 1)
+sky_horizon_color = Color(0.71079123, 0.8284792, 0.9101225, 1)
+sky_curve = 0.22735734
+sky_cover = SubResource("NoiseTexture2D_t7rhm")
+sky_cover_modulate = Color(0.4810815, 0.75954086, 0.9546663, 1)
+ground_bottom_color = Color(0.5548229, 0.69404054, 0.6555659, 1)
+
+[sub_resource type="Sky" id="Sky_t7rhm"]
+sky_material = SubResource("ProceduralSkyMaterial_to3d4")
+
+[sub_resource type="Environment" id="Environment_4adup"]
+background_mode = 2
+sky = SubResource("Sky_t7rhm")
+
+[sub_resource type="Compositor" id="Compositor_fudvv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3j7y"]
+lightmap_size_hint = Vector2i(244, 216)
+add_uv2 = true
+size = Vector3(8, 1, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m681r"]
+albedo_color = Color(0.55, 0.5346, 0.50600004, 1)
+albedo_texture = ExtResource("5_m681r")
+uv1_scale = Vector3(24, 80, 1)
+
+[node name="Node3D" type="Node3D" unique_id=948481011]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1172522146 node_paths=PackedStringArray("Hands")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6665803, 0)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_06s8g")
+MOUSE_SENS = null
+MAX_SPEED = null
+WALK_SPEED = 8
+STOP_SPEED = null
+GRAVITY = null
+ACCELERATE = null
+AIR_ACCELERATE = null
+MOVE_FRICTION = null
+JUMP_FORCE = null
+AIR_CONTROL = null
+STEP_SIZE = null
+MAX_HANG = null
+PLAYER_HEIGHT = null
+CROUCH_HEIGHT = null
+Hands = NodePath("Camera3D/hands")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=556513734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.904191)
+shape = SubResource("CapsuleShape3D_0tbj7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=666286097]
+visible = false
+mesh = SubResource("CapsuleMesh_nb6l6")
+surface_material_override/0 = SubResource("StandardMaterial3D_06s8g")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=566006178]
+fov = 85.0
+
+[node name="hands" type="Node2D" parent="CharacterBody3D/Camera3D" unique_id=1900280349]
+
+[node name="RightHand" type="Sprite2D" parent="CharacterBody3D/Camera3D/hands" unique_id=540653882]
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("2_knhaw")
+
+[node name="LeftHand" type="Sprite2D" parent="CharacterBody3D/Camera3D/hands" unique_id=1109738550]
+position = Vector2(471, 441)
+scale = Vector2(2, 2)
+texture = ExtResource("3_knhaw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033836403]
+environment = SubResource("Environment_4adup")
+compositor = SubResource("Compositor_fudvv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1840727974]
+transform = Transform3D(0.584474, 0.23761386, 0.77584124, -0.7089179, 0.6147043, 0.34579468, -0.39474738, -0.75211596, 0.52772737, 4.7683716e-07, 2.6596005, 1.0370378)
+light_color = Color(0.90999997, 0.9715, 1, 1)
+light_energy = 0.326
+light_indirect_energy = 2.415
+light_volumetric_fog_energy = 0.0
+light_specular = 6.861
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="Explosion" parent="." unique_id=1673234860 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 2.2357106, 10.485811)
+
+[node name="Explosion2" parent="." unique_id=851498901 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(1.1418036, -0.8562933, 1.4010876, 0.5409476, 1.8074186, 0.66378754, -1.5503743, 0, 1.2634634, -0.012007616, 2.9654703, 10.420173)
+
+[node name="Explosion3" parent="." unique_id=1852653835 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(1.895195, 0, 2.3255615, 0, 3, 0, -2.3255615, 0, 1.895195, -0.031183783, 4.5828648, 10.420173)
+
+[node name="Explosion4" parent="." unique_id=142382346 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(0.68673235, 0.72691035, 0, -0.72691035, 0.68673235, 0, 0, 0, 1, -0.7356631, 2.2558289, 10.485811)
+
+[node name="Explosion5" parent="." unique_id=972344653 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(0.39089295, 1.2014751, 1.5503743, -1.9018756, 0.6187642, 0, -0.47965807, -1.4743096, 1.2634634, -0.19165796, 2.9162328, 10.617088)
+
+[node name="Explosion6" parent="." unique_id=938012548 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(13.734647, 14.538207, 0, -14.538207, 13.734647, 0, 0, 0, 20, 0.97050774, 3.8676958, 10.485811)
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=2091235086]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")

@@ -1,0 +1,770 @@
+[gd_scene format=3 uid="uid://capy1o4bi846g"]
+
+[ext_resource type="Script" uid="uid://3bhojjrthkj0" path="res://scripts/Player.gd" id="1_06s8g"]
+[ext_resource type="Shape3D" uid="uid://cpl7mw331ybw8" path="res://data/standing.tres" id="2_27nt3"]
+[ext_resource type="Texture2D" uid="uid://c1cc0bcse0417" path="res://hands/hands1.png" id="2_knhaw"]
+[ext_resource type="PackedScene" uid="uid://b0gp1oagnu4c1" path="res://prefabs/shawty.tscn" id="3_5lo0n"]
+[ext_resource type="PackedScene" uid="uid://di2gucd7reutw" path="res://prefabs/dual-macs.tscn" id="3_fswsm"]
+[ext_resource type="Texture2D" uid="uid://dn83aofwibgea" path="res://hands/hands4.png" id="3_knhaw"]
+[ext_resource type="Shape3D" uid="uid://0kvoo1gqh4mq" path="res://data/Crouch.tres" id="3_on6gc"]
+[ext_resource type="Texture2D" uid="uid://d0lcyq822rdlo" path="res://Textures/tool.png" id="4_4adup"]
+[ext_resource type="Script" uid="uid://dhck2v1ssea4o" path="res://scenes/dev/Enemie.gd" id="4_to3d4"]
+[ext_resource type="PackedScene" uid="uid://w3ogjasqrdym" path="res://prefabs/explosion.tscn" id="4_v3j7y"]
+[ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="5_m681r"]
+[ext_resource type="Texture2D" uid="uid://2jlvb1rbfgtr" path="res://Textures/bldg098M.jpg" id="7_t7rhm"]
+[ext_resource type="PackedScene" uid="uid://cce8yt034lp31" path="res://prefabs/revolver.tscn" id="8_w5m8u"]
+[ext_resource type="Material" uid="uid://dk5uqgu23muh7" path="res://Shaders/new_standard_material_3d.tres" id="10_w5m8u"]
+[ext_resource type="Shader" uid="uid://ck0t40glbtnxt" path="res://Shaders/fuckupper.gdshader" id="11_muxxg"]
+[ext_resource type="AudioStream" uid="uid://2j8xicxklocg" path="res://sound/music/droptop.mp3" id="11_vmx02"]
+[ext_resource type="AudioStream" uid="uid://t2dxgsnt7i2h" path="res://sound/sfx/lunge.ogg" id="13_pxrhj"]
+[ext_resource type="PackedScene" uid="uid://vkv0sghw4j2r" path="res://models/sharp.gltf" id="13_wu6cg"]
+[ext_resource type="AudioStream" uid="uid://bbosoc08ier1m" path="res://sound/sfx/ohhhhh-no.mp3" id="14_muxxg"]
+[ext_resource type="Texture2D" uid="uid://dqeto562vdtus" path="res://Textures/Screenshot 2025-03-01 120220.png" id="20_t2qnd"]
+[ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="21_u06m6"]
+[ext_resource type="Texture2D" uid="uid://dovgq7v2lh5jt" path="res://data/Screenshot 2025-04-19 231844.png" id="22_q4fe8"]
+[ext_resource type="Texture2D" uid="uid://bd7j5ho1e2dp6" path="res://Textures/Screenshot 2025-11-15 145200.png" id="23_kwxqj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nb6l6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06s8g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5lo0n"]
+shader = ExtResource("11_muxxg")
+shader_parameter/washout_intensity = 0.3
+shader_parameter/blur_amount = 2.86000013585
+shader_parameter/blockiness = 278.30601084453497
+shader_parameter/color_steps = 9.8910000898225
+shader_parameter/grain_amount = 0.02400000114
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7rhm"]
+bg_color = Color(0.15844831, 0.71, 0.14909998, 1)
+
+[sub_resource type="Gradient" id="Gradient_4adup"]
+offsets = PackedFloat32Array(0.018072288, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fudvv"]
+gradient = SubResource("Gradient_4adup")
+width = 17
+height = 3
+fill_from = Vector2(0.016393442, 0.023224045)
+
+[sub_resource type="Gradient" id="Gradient_t7rhm"]
+offsets = PackedFloat32Array(0.018072288, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4adup"]
+gradient = SubResource("Gradient_t7rhm")
+width = 16
+height = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
+noise_type = 2
+frequency = 0.0153
+fractal_type = 0
+fractal_octaves = 2
+fractal_lacunarity = 1.555
+fractal_gain = 0.14
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t7rhm"]
+noise = SubResource("FastNoiseLite_to3d4")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_to3d4"]
+sky_top_color = Color(0.66399986, 0.52, 1, 1)
+sky_horizon_color = Color(0.71079123, 0.8284792, 0.9101225, 1)
+sky_curve = 0.22735734
+sky_cover = SubResource("NoiseTexture2D_t7rhm")
+sky_cover_modulate = Color(0.4810815, 0.75954086, 0.9546663, 1)
+ground_bottom_color = Color(0.5548229, 0.69404054, 0.6555659, 1)
+
+[sub_resource type="Sky" id="Sky_t7rhm"]
+sky_material = SubResource("ProceduralSkyMaterial_to3d4")
+
+[sub_resource type="Environment" id="Environment_4adup"]
+background_mode = 2
+sky = SubResource("Sky_t7rhm")
+
+[sub_resource type="Compositor" id="Compositor_fudvv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7rhm"]
+radius = 0.55
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4adup"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to3d4"]
+albedo_color = Color(0.33906627, 0, 0.013944141, 1)
+rim = 0.27
+rim_tint = 0.52
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vmx02"]
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmx02"]
+albedo_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m681r"]
+size = Vector3(40, 2, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3j7y"]
+lightmap_size_hint = Vector2i(404, 226)
+add_uv2 = true
+size = Vector3(40, 2, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m681r"]
+albedo_color = Color(0.55, 0.5346, 0.50600004, 1)
+albedo_texture = ExtResource("5_m681r")
+uv1_scale = Vector3(80, 80, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4adup"]
+size = Vector3(20, 8, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fudvv"]
+lightmap_size_hint = Vector2i(144, 186)
+add_uv2 = true
+size = Vector3(20, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27nt3"]
+albedo_color = Color(0.55, 0.5346, 0.50600004, 1)
+albedo_texture = ExtResource("7_t7rhm")
+uv1_scale = Vector3(6, 1.17, 1)
+uv1_offset = Vector3(0, 0.825, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ar4hd"]
+albedo_texture = ExtResource("7_t7rhm")
+uv1_scale = Vector3(0.94, 0.42, 1)
+uv1_offset = Vector3(0, -0.53, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u06m6"]
+size = Vector2(6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4fe8"]
+albedo_texture = ExtResource("20_t2qnd")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q4fe8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwxqj"]
+albedo_texture = ExtResource("22_q4fe8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_be1oa"]
+albedo_color = Color(0.44470042, 0.96434087, 0, 1)
+albedo_texture = ExtResource("23_kwxqj")
+
+[node name="Node3D" type="Node3D" unique_id=948481011]
+
+[node name="Meowless Sterling" type="CharacterBody3D" parent="." unique_id=1172522146 node_paths=PackedStringArray("Hands")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.67421424, 15.010633)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_06s8g")
+GUNS = Array[PackedScene]([ExtResource("8_w5m8u"), ExtResource("3_5lo0n"), ExtResource("3_fswsm")])
+AIR_SPEED = 12.0
+WALK_SPEED = 8
+STOP_SPEED = 12.0
+GRAVITY = 9.0
+JUMP_FORCE = 3.0
+AIR_CONTROL = 0.1
+STRIDE = 50
+STRIDE_SPEED = 6
+STANDING_SHAPE = ExtResource("2_27nt3")
+CROUCHING_SHAPE = ExtResource("3_on6gc")
+Hands = NodePath("Camera3D/hands")
+slashMaterial = ExtResource("10_w5m8u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meowless Sterling" unique_id=556513734]
+shape = ExtResource("2_27nt3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meowless Sterling" unique_id=666286097]
+visible = false
+mesh = SubResource("CapsuleMesh_nb6l6")
+surface_material_override/0 = SubResource("StandardMaterial3D_06s8g")
+
+[node name="Camera3D" type="Camera3D" parent="Meowless Sterling" unique_id=566006178]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3609575, 0)
+current = true
+fov = 90.0
+
+[node name="hands" type="Node2D" parent="Meowless Sterling/Camera3D" unique_id=1900280349]
+
+[node name="RightHand" type="Sprite2D" parent="Meowless Sterling/Camera3D/hands" unique_id=540653882]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("2_knhaw")
+
+[node name="LeftHand" type="Sprite2D" parent="Meowless Sterling/Camera3D/hands" unique_id=1109738550]
+unique_name_in_owner = true
+position = Vector2(471, 441)
+scale = Vector2(2, 2)
+texture = ExtResource("3_knhaw")
+
+[node name="AltHand" type="Sprite2D" parent="Meowless Sterling/Camera3D/hands" unique_id=1699590514]
+unique_name_in_owner = true
+visible = false
+position = Vector2(471, 441)
+scale = Vector2(2, 2)
+texture = ExtResource("3_knhaw")
+
+[node name="fuckerupper" type="ColorRect" parent="Meowless Sterling/Camera3D" unique_id=360259068]
+visible = false
+material = SubResource("ShaderMaterial_5lo0n")
+offset_right = 1284.0
+offset_bottom = 725.0
+mouse_filter = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Meowless Sterling/Camera3D" unique_id=1683245235]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -90.0
+offset_right = 250.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "halt"
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_t7rhm")
+value = 50.0
+rounded = true
+
+[node name="hair" type="Node2D" parent="Meowless Sterling/Camera3D" unique_id=907452309]
+
+[node name="dropcrpsshair2" type="Sprite2D" parent="Meowless Sterling/Camera3D/hair" unique_id=2076150927]
+position = Vector2(640, 360)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_fudvv")
+
+[node name="drop" type="Sprite2D" parent="Meowless Sterling/Camera3D/hair" unique_id=1419891755]
+position = Vector2(640, 360)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_fudvv")
+
+[node name="crpsshair" type="Sprite2D" parent="Meowless Sterling/Camera3D/hair" unique_id=520303186]
+position = Vector2(640, 360)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_4adup")
+
+[node name="Sprite2D" type="Sprite2D" parent="Meowless Sterling/Camera3D/hair" unique_id=1306132263]
+position = Vector2(640, 360)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_4adup")
+
+[node name="Node2D" type="Node2D" parent="Meowless Sterling/Camera3D" unique_id=272299017]
+
+[node name="Icon" type="Sprite2D" parent="Meowless Sterling/Camera3D/Node2D" unique_id=323606737]
+unique_name_in_owner = true
+position = Vector2(77, 73)
+texture = ExtResource("4_4adup")
+hframes = 4
+
+[node name="ClimbRay" type="RayCast3D" parent="Meowless Sterling/Camera3D" unique_id=1926770009]
+target_position = Vector3(0, 0, -1)
+
+[node name="Slash" type="Node3D" parent="Meowless Sterling/Camera3D" unique_id=1340206556]
+transform = Transform3D(0.90301144, -0.18207905, -0.35021153, 0.19765733, 0.98027116, 0, 0.381447, -0.0769132, 0.8290668, -0.775, -0.32, 0)
+
+[node name="sharp" parent="Meowless Sterling/Camera3D/Slash" unique_id=1783683282 instance=ExtResource("13_wu6cg")]
+transform = Transform3D(0.82609826, 0.5635261, 0, -0.5635261, 0.82609826, 0, 0, 0, 1, -0.565, -0.255, -1.245)
+
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp" index="0" unique_id=1235521112]
+transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
+surface_material_override/0 = ExtResource("10_w5m8u")
+
+[node name="sharp3" parent="Meowless Sterling/Camera3D/Slash" unique_id=1987012430 instance=ExtResource("13_wu6cg")]
+transform = Transform3D(0.54317445, -0.8396199, 0, 0.8396199, 0.54317445, 0, 0, 0, 1, -0.415, -0.41, -1.5)
+
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp3" index="0" unique_id=1235521112]
+transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
+surface_material_override/0 = ExtResource("10_w5m8u")
+
+[node name="sharp2" parent="Meowless Sterling/Camera3D/Slash" unique_id=916159610 instance=ExtResource("13_wu6cg")]
+transform = Transform3D(0.36487675, 0.93105584, 0, -0.93105584, 0.36487675, 0, 0, 0, 1, -0.485, 0.04, -1.185)
+
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp2" index="0" unique_id=1235521112]
+transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
+surface_material_override/0 = ExtResource("10_w5m8u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Meowless Sterling/Camera3D/Slash" unique_id=1467474726]
+stream = ExtResource("13_pxrhj")
+
+[node name="bulletPoint" type="Node3D" parent="Meowless Sterling/Camera3D" unique_id=1555956657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20423487, -0.10353875, -0.23657799)
+
+[node name="bulletPoint2" type="Node3D" parent="Meowless Sterling/Camera3D" unique_id=309905396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22411847, -0.104, -0.23700047)
+
+[node name="RayCast3D" type="RayCast3D" parent="Meowless Sterling" unique_id=2076284941]
+target_position = Vector3(0, -1.01, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Meowless Sterling" unique_id=1614947695]
+stream = ExtResource("11_vmx02")
+volume_db = 23.535
+autoplay = true
+parameters/looping = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033836403]
+environment = SubResource("Environment_4adup")
+compositor = SubResource("Compositor_fudvv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1840727974]
+transform = Transform3D(0.584474, 0.23761386, 0.77584124, -0.7089179, 0.6147043, 0.34579468, -0.39474738, -0.75211596, 0.52772737, 4.7683716e-07, 2.6596005, 1.0370378)
+light_color = Color(0.90999997, 0.9715, 1, 1)
+light_energy = 0.326
+light_indirect_energy = 2.415
+light_volumetric_fog_energy = 0.0
+light_specular = 6.861
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="plosions" type="Node3D" parent="." unique_id=749653973]
+
+[node name="Explosion" parent="plosions" unique_id=1673234860 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, -1.0787449, 12.307005)
+
+[node name="Explosion2" parent="plosions" unique_id=851498901 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(1.1418036, -0.8562933, 1.4010876, 0.5409476, 1.8074186, 0.66378754, -1.5503743, 0, 1.2634634, -0.012007616, -0.3489852, 12.241366)
+
+[node name="Explosion3" parent="plosions" unique_id=1852653835 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(1.895195, 0, 2.3255615, 0, 3, 0, -2.3255615, 0, 1.895195, -0.031183783, 1.2684093, 12.241366)
+flip_h = true
+
+[node name="Explosion4" parent="plosions" unique_id=142382346 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(0.68673235, 0.72691035, 0, -0.72691035, 0.68673235, 0, 0, 0, 1, -0.7356631, -1.0586267, 12.307005)
+
+[node name="Explosion5" parent="plosions" unique_id=972344653 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(0.39089295, 1.2014751, 1.5503743, -1.9018756, 0.6187642, 0, -0.47965807, -1.4743096, 1.2634634, -0.19165796, -0.39822268, 12.438282)
+
+[node name="Explosion6" parent="plosions" unique_id=938012548 instance=ExtResource("4_v3j7y")]
+transform = Transform3D(13.734647, 14.538207, 0, -14.538207, 13.734647, 0, 0, 0, 20, 0.97050774, 0.5532403, 1.4584904)
+
+[node name="enemy spawns" type="Node3D" parent="." unique_id=2123573351]
+
+[node name="Enime" type="CharacterBody3D" parent="enemy spawns" unique_id=1593619125]
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime" unique_id=1856658044]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime" unique_id=974925229]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime" unique_id=1365441282]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime" unique_id=1318168001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime/looker" unique_id=1023448944]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime2" type="CharacterBody3D" parent="enemy spawns" unique_id=116040031]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7436705, -2.2324383, -1.2745657)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime2" unique_id=58769666]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime2" unique_id=1106346744]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime2" unique_id=1330778550]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime2" unique_id=1502824282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime2/looker" unique_id=867083145]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime3" type="CharacterBody3D" parent="enemy spawns" unique_id=1823031775]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7436705, -2.2324383, -3.2745657)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime3" unique_id=366233317]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime3" unique_id=176979182]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime3" unique_id=964785364]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime3" unique_id=855921921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime3/looker" unique_id=299102877]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime4" type="CharacterBody3D" parent="enemy spawns" unique_id=1836387829]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.880249, -2.2324383, -2.1390872)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime4" unique_id=1220251009]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime4" unique_id=1602691733]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime4" unique_id=708432137]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime4" unique_id=1153047815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime4/looker" unique_id=695823728]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime5" type="CharacterBody3D" parent="enemy spawns" unique_id=929614370]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.880249, -2.2324383, -4.139087)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime5" unique_id=828737762]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime5" unique_id=712221636]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime5" unique_id=1418566264]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime5" unique_id=555742565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime5/looker" unique_id=1961710505]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime6" type="CharacterBody3D" parent="enemy spawns" unique_id=1351801762]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4664307, -2.2324383, -4.865821)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime6" unique_id=1020047795]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime6" unique_id=888884768]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime6" unique_id=734858962]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime6" unique_id=1464622149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime6/looker" unique_id=1312101881]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime7" type="CharacterBody3D" parent="enemy spawns" unique_id=154503808]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4664307, -2.2324383, -6.865821)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime7" unique_id=1344430995]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime7" unique_id=33664013]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime7" unique_id=437357340]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime7" unique_id=1552846814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime7/looker" unique_id=792936875]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime8" type="CharacterBody3D" parent="enemy spawns" unique_id=1626724034]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.603009, -2.2324383, -5.7303424)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime8" unique_id=1663112507]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime8" unique_id=1825175959]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime8" unique_id=1352590982]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime8" unique_id=1333812634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime8/looker" unique_id=755278224]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Enime9" type="CharacterBody3D" parent="enemy spawns" unique_id=1199589618]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.603009, -2.2324383, -7.7303424)
+script = ExtResource("4_to3d4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime9" unique_id=1670759203]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime9" unique_id=733502595]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime9" unique_id=2127451245]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="enemy spawns/Enime9" unique_id=127783545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime9/looker" unique_id=3543382]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="environment" type="Node3D" parent="." unique_id=1715485145]
+
+[node name="fleur" type="StaticBody3D" parent="environment" unique_id=1442678125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -4.235, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur" unique_id=1649602832]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur" unique_id=2091235086]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur3" type="StaticBody3D" parent="environment" unique_id=1383807961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.76499987, 46)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur3" unique_id=1566854352]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur3" unique_id=1248933366]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur2" type="StaticBody3D" parent="environment" unique_id=431032860]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, -14, -4.235, 7)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur2" unique_id=328950682]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur2" unique_id=947210716]
+transform = Transform3D(1, 0, 0, 0, 0.99998116, -0.0061609894, 0, 0.0061609894, 0.99998116, 0, 0, 0)
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="environment" unique_id=1629696894]
+transform = Transform3D(-4.371139e-08, 1, 0, 4.371139e-08, 1.9106855e-15, 1, 1, 4.371139e-08, -4.371139e-08, -11, 0.76457644, 10)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D2" unique_id=1236468705]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D2" unique_id=2090465793]
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="environment" unique_id=925220189]
+transform = Transform3D(1.3113416e-07, -1, -3.821371e-15, 4.371139e-08, 1.9106855e-15, 1, -1, -1.3113416e-07, 4.371139e-08, 10, 0.76457644, 10)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D3" unique_id=578510793]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D3" unique_id=1943830019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -4.2351647e-22, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="environment" unique_id=693816628]
+transform = Transform3D(1.3113416e-07, -1, -3.821371e-15, 4.371139e-08, 1.9106855e-15, 1, -1, -1.3113416e-07, 4.371139e-08, 10, 0.76457644, -10)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D6" unique_id=2100719440]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D6" unique_id=793187605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -4.2351647e-22, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="environment" unique_id=1541901664]
+transform = Transform3D(1, 1.7484555e-07, -4.371139e-08, 4.371139e-08, 1.9106855e-15, 1, 1.7484555e-07, -1, -5.7320566e-15, 1, 0.76457644, 21)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D4" unique_id=904651403]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D4" unique_id=1661751310]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="environment" unique_id=1167145590]
+transform = Transform3D(1, 1.7484555e-07, -4.371139e-08, 4.371139e-08, 1.9106855e-15, 1, 1.7484555e-07, -1, -5.7320566e-15, 1, 8.764576, 21)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D8" unique_id=900758102]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D8" unique_id=1361191377]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="environment" unique_id=1303321782]
+transform = Transform3D(1, 1.7484555e-07, -4.371139e-08, 4.371139e-08, 1.9106855e-15, 1, 1.7484555e-07, -1, -5.7320566e-15, 1, 16.764576, 21)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D9" unique_id=560311717]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D9" unique_id=317257825]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="environment" unique_id=1613989948]
+transform = Transform3D(1, 1.7484555e-07, -4.371139e-08, 4.371139e-08, 1.9106855e-15, 1, 1.7484555e-07, -1, -5.7320566e-15, 1, 24.764576, 21)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D10" unique_id=1099252244]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D10" unique_id=1003615282]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="environment" unique_id=1515597706]
+transform = Transform3D(-2.1855695e-07, 1, 7.642742e-15, 4.371139e-08, 1.9106855e-15, 1, 1, 2.1855695e-07, -4.371139e-08, -11, 8.764576, 8)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D11" unique_id=994947116]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D11" unique_id=737751777]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D12" type="StaticBody3D" parent="environment" unique_id=350484341]
+transform = Transform3D(-2.1855695e-07, 1, 7.642742e-15, 4.371139e-08, 1.9106855e-15, 1, 1, 2.1855695e-07, -4.371139e-08, -11, 16.764576, 8)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D12" unique_id=571438027]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D12" unique_id=1892167211]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="environment" unique_id=1574093161]
+transform = Transform3D(-2.1855695e-07, 1, 7.642742e-15, 4.371139e-08, 1.9106855e-15, 1, 1, 2.1855695e-07, -4.371139e-08, -11, 24.764576, 8)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D13" unique_id=489738348]
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D13" unique_id=662345477]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="environment" unique_id=755434807]
+transform = Transform3D(1, 1.7484555e-07, -4.371139e-08, 4.371139e-08, 1.9106855e-15, 1, 1.7484555e-07, -1, -5.7320566e-15, -6, 0.76457644, -23)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D5" unique_id=1845030089]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 2, 1.9073486e-06, -5.9604645e-08)
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D5" unique_id=322606100]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+mesh = SubResource("BoxMesh_fudvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_27nt3")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="environment" unique_id=1528062439]
+transform = Transform3D(1, 1.7484555e-07, -4.371139e-08, 4.371139e-08, 1.9106855e-15, 1, 1.7484555e-07, -1, -5.7320566e-15, -26, 0.76457644, -23)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/StaticBody3D7" unique_id=880231023]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 2, 1.9073486e-06, -5.9604645e-08)
+shape = SubResource("BoxShape3D_4adup")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/StaticBody3D7" unique_id=724709144]
+transform = Transform3D(1, 0, -1.0022246e-21, 0, 1, 0, -1.0022246e-21, 0, 1, 1.9999999, 0, -5.9604645e-08)
+material_override = SubResource("StandardMaterial3D_ar4hd")
+mesh = SubResource("BoxMesh_fudvv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="environment" unique_id=1802197954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8316544, -18.994478)
+mesh = SubResource("QuadMesh_u06m6")
+surface_material_override/0 = SubResource("StandardMaterial3D_q4fe8")
+
+[node name="Label3D" type="Label3D" parent="environment/MeshInstance3D" unique_id=401883985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38477874, 0.012336731)
+modulate = Color(1, 0, 0, 1)
+text = "We are all a people
+TOGETHRE"
+font = ExtResource("21_u06m6")
+font_size = 120
+
+[node name="OmniLight3D" type="OmniLight3D" parent="environment/MeshInstance3D" unique_id=424939390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2018027, -0.7128539, 1.6959286)
+light_color = Color(0.7752841, 0.13785282, 0.9999998, 1)
+light_energy = 16.0
+light_indirect_energy = 2.174
+light_projector = SubResource("NoiseTexture2D_q4fe8")
+omni_range = 7.838
+omni_attenuation = 0.305
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="environment" unique_id=1073829436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5629573, 0.8316544, -18.994478)
+material_override = SubResource("StandardMaterial3D_kwxqj")
+mesh = SubResource("QuadMesh_u06m6")
+surface_material_override/0 = SubResource("StandardMaterial3D_q4fe8")
+
+[node name="Label3D" type="Label3D" parent="environment/MeshInstance3D2" unique_id=1666923651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038862705, -2.0458422, 0.012336731)
+modulate = Color(0.26999998, 1, 0.46466666, 1)
+text = "SPONGEBOBBY
+THE MOVIE?"
+font = ExtResource("21_u06m6")
+font_size = 118
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="environment" unique_id=430614626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.629604, 0.8316544, -18.994478)
+material_override = SubResource("StandardMaterial3D_be1oa")
+mesh = SubResource("QuadMesh_u06m6")
+surface_material_override/0 = SubResource("StandardMaterial3D_q4fe8")
+
+[node name="Label3D" type="Label3D" parent="environment/MeshInstance3D3" unique_id=1061161213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0376606, -2.0043354, 0.008176804)
+modulate = Color(0.58, 0.58, 0.58, 1)
+text = "PLANET SEXY NINJA 
+SUMMER
+SUMMER 2014"
+font = ExtResource("21_u06m6")
+font_size = 118
+
+[editable path="Meowless Sterling/Camera3D/Slash/sharp"]
+[editable path="Meowless Sterling/Camera3D/Slash/sharp3"]
+[editable path="Meowless Sterling/Camera3D/Slash/sharp2"]

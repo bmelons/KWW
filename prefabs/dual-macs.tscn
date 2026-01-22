@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://di2gucd7reutw"]
+
+[ext_resource type="Script" uid="uid://b8i6xy5t3siy3" path="res://scripts/dual_macs.gd" id="1_shbdm"]
+[ext_resource type="Texture2D" uid="uid://b6gfckk30ig2y" path="res://hands/hands7.png" id="2_2bjbc"]
+[ext_resource type="PackedScene" uid="uid://dcxyte7gqvxg0" path="res://prefabs/beam.tscn" id="2_aijvi"]
+[ext_resource type="Texture2D" uid="uid://ccyw4kf03kb2p" path="res://hands/hands6.png" id="3_shbdm"]
+[ext_resource type="AudioStream" uid="uid://gkdat88uj5gk" path="res://sound/sfx/pew.mp3" id="4_tuusw"]
+[ext_resource type="AudioStream" uid="uid://b4ademq0b1lmv" path="res://sound/sfx/gun-trigger-click-01.mp3" id="5_m0u0m"]
+
+[node name="DualMacs" type="Node3D" unique_id=1058513632 node_paths=PackedStringArray("HitscanRay")]
+script = ExtResource("1_shbdm")
+altHand = ExtResource("2_2bjbc")
+Damage = 1.0
+FireRate = 0.07
+occupiesBothArms = true
+HitscanRay = NodePath("Hitscan")
+Laser = ExtResource("2_aijvi")
+hand = ExtResource("3_shbdm")
+iconFrame = 2
+
+[node name="Hitscan" type="RayCast3D" parent="." unique_id=892273395]
+target_position = Vector3(0, 0, -200)
+hit_back_faces = false
+debug_shape_custom_color = Color(1, 0.51666665, 0, 1)
+debug_shape_thickness = 5
+
+[node name="gunshot" type="AudioStreamPlayer3D" parent="." unique_id=1940004501]
+stream = ExtResource("4_tuusw")
+pitch_scale = 2.0
+max_polyphony = 5
+
+[node name="trigger" type="AudioStreamPlayer3D" parent="." unique_id=1223621816]
+stream = ExtResource("5_m0u0m")
+pitch_scale = 3.0
