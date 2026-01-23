@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ck8lxopb0jblt"
-valid=false
+path="res://.godot/imported/sharp.blend-03576394dd31e0a01e7e530fdcb1dd6e.scn"
 
 [deps]
 
 source_file="res://projectfiles/sharp.blend"
+dest_files=["res://.godot/imported/sharp.blend-03576394dd31e0a01e7e530fdcb1dd6e.scn"]
 
 [params]
 

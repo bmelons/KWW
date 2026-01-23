@@ -19,10 +19,12 @@
 [ext_resource type="AudioStream" uid="uid://t2dxgsnt7i2h" path="res://sound/sfx/lunge.ogg" id="13_pxrhj"]
 [ext_resource type="PackedScene" uid="uid://vkv0sghw4j2r" path="res://models/sharp.gltf" id="13_wu6cg"]
 [ext_resource type="AudioStream" uid="uid://bbosoc08ier1m" path="res://sound/sfx/ohhhhh-no.mp3" id="14_muxxg"]
+[ext_resource type="Script" uid="uid://bbydyrq3aalsu" path="res://scripts/buttgrunt.gd" id="16_be1oa"]
 [ext_resource type="Texture2D" uid="uid://dqeto562vdtus" path="res://Textures/Screenshot 2025-03-01 120220.png" id="20_t2qnd"]
 [ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="21_u06m6"]
 [ext_resource type="Texture2D" uid="uid://dovgq7v2lh5jt" path="res://data/Screenshot 2025-04-19 231844.png" id="22_q4fe8"]
 [ext_resource type="Texture2D" uid="uid://bd7j5ho1e2dp6" path="res://Textures/Screenshot 2025-11-15 145200.png" id="23_kwxqj"]
+[ext_resource type="Texture2D" uid="uid://ciow2jopoljva" path="res://data/Screenshot 2025-09-04 223842.png" id="25_ar4hd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nb6l6"]
 
@@ -154,6 +156,9 @@ albedo_texture = ExtResource("22_q4fe8")
 albedo_color = Color(0.44470042, 0.96434087, 0, 1)
 albedo_texture = ExtResource("23_kwxqj")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlcvy"]
+albedo_texture = ExtResource("25_ar4hd")
+
 [node name="Node3D" type="Node3D" unique_id=948481011]
 
 [node name="Meowless Sterling" type="CharacterBody3D" parent="." unique_id=1172522146 node_paths=PackedStringArray("Hands", "SlashArea")]
@@ -280,21 +285,21 @@ transform = Transform3D(0.90301144, -0.18207905, -0.35021153, 0.19765733, 0.9802
 [node name="sharp" parent="Meowless Sterling/Camera3D/Slash" unique_id=1783683282 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.82609826, 0.5635261, 0, -0.5635261, 0.82609826, 0, 0, 0, 1, -0.565, -0.255, -1.245)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp" index="0" unique_id=1216690151]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp" index="0" unique_id=1235521112]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
 [node name="sharp3" parent="Meowless Sterling/Camera3D/Slash" unique_id=1987012430 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.54317445, -0.8396199, 0, 0.8396199, 0.54317445, 0, 0, 0, 1, -0.415, -0.41, -1.5)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp3" index="0" unique_id=1216690151]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp3" index="0" unique_id=1235521112]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
 [node name="sharp2" parent="Meowless Sterling/Camera3D/Slash" unique_id=916159610 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.36487675, 0.93105584, 0, -0.93105584, 0.36487675, 0, 0, 0, 1, -0.485, 0.04, -1.185)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp2" index="0" unique_id=1216690151]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp2" index="0" unique_id=1235521112]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
@@ -361,7 +366,7 @@ transform = Transform3D(13.734647, 14.538207, 0, -14.538207, 13.734647, 0, 0, 0,
 [node name="enemy spawns" type="Node3D" parent="." unique_id=2123573351]
 
 [node name="Enime" type="CharacterBody3D" parent="enemy spawns" unique_id=1593619125]
-script = ExtResource("4_to3d4")
+script = ExtResource("16_be1oa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime" unique_id=1856658044]
 shape = SubResource("CapsuleShape3D_t7rhm")
@@ -773,6 +778,12 @@ SUMMER
 SUMMER 2014"
 font = ExtResource("21_u06m6")
 font_size = 118
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="environment" unique_id=694998823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.89735, 0.8316544, -18.994478)
+material_override = SubResource("StandardMaterial3D_hlcvy")
+mesh = SubResource("QuadMesh_u06m6")
+surface_material_override/0 = SubResource("StandardMaterial3D_q4fe8")
 
 [editable path="Meowless Sterling/Camera3D/Slash/sharp"]
 [editable path="Meowless Sterling/Camera3D/Slash/sharp3"]
