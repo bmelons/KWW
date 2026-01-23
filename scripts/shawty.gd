@@ -4,6 +4,8 @@ extends HitscanWeapon
 @export var altHand:Texture2D
 @export var maxSpreadAngle:float = 15
 @export var damp : float = 1.5
+@export var MAX_KNOCKS = 3
+var current_knocks = 0
 func _ready():
 	Camera = Main.player.cam
 	Main.player.rh.texture = hand
@@ -11,6 +13,8 @@ func _ready():
 	Main.player.icon.frame = iconFrame
 
 func _process(delta: float) -> void:
+	if Main.player.is_on_floor():
+		current_knocks = 0
 	if Input.is_action_just_pressed("fire"):
 		$trigger.play()
 	if Input.is_action_pressed("fire"):
@@ -22,10 +26,11 @@ func _process(delta: float) -> void:
 	if triggerDown and not fireDebounce and (Main.tick()-lastFire) > FireRate:
 		if not Automatic:
 			fireDebounce = true
-		var backVector = Camera.global_basis.z.normalized() * 10
-		print(Camera.global_basis.z.normalized())
-		Main.player.velocity += backVector
-		Main.player.yvel += backVector.y*.5
+		if current_knocks < MAX_KNOCKS:
+			current_knocks += 1;
+			var backVector = Camera.global_basis.z.normalized() * 10
+			Main.player.velocity += backVector
+			Main.player.yvel += backVector.y*.6
 		for i in range(0,10):
 			Fire()
 		lastFire = Main.tick()

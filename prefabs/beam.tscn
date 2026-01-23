@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcxyte7gqvxg0"]
 
-[ext_resource type="Script" uid="uid://8yi5xti0mjw6" path="res://scenes/dev/Beam.gd" id="1_pmv8y"]
+[ext_resource type="Script" uid="uid://8yi5xti0mjw6" path="res://scripts/Beam.gd" id="1_pmv8y"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_wu6cg"]
 top_radius = 0.03

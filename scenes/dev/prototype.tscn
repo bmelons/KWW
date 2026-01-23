@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dn83aofwibgea" path="res://hands/hands4.png" id="3_knhaw"]
 [ext_resource type="Shape3D" uid="uid://0kvoo1gqh4mq" path="res://data/Crouch.tres" id="3_on6gc"]
 [ext_resource type="Texture2D" uid="uid://d0lcyq822rdlo" path="res://Textures/tool.png" id="4_4adup"]
-[ext_resource type="Script" uid="uid://dhck2v1ssea4o" path="res://scenes/dev/Enemie.gd" id="4_to3d4"]
+[ext_resource type="Script" uid="uid://dhck2v1ssea4o" path="res://scripts/Enemie.gd" id="4_to3d4"]
 [ext_resource type="PackedScene" uid="uid://w3ogjasqrdym" path="res://prefabs/explosion.tscn" id="4_v3j7y"]
 [ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="5_m681r"]
 [ext_resource type="Texture2D" uid="uid://2jlvb1rbfgtr" path="res://Textures/bldg098M.jpg" id="7_t7rhm"]
@@ -33,7 +33,7 @@ shader = ExtResource("11_muxxg")
 shader_parameter/washout_intensity = 0.3
 shader_parameter/blur_amount = 0.0
 shader_parameter/blockiness = 600.0
-shader_parameter/color_steps = 13.263000249992501
+shader_parameter/color_steps = 13.2630002499925
 shader_parameter/grain_amount = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7rhm"]
@@ -59,7 +59,7 @@ width = 16
 height = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwxqj"]
-size = Vector3(2.175, 1.01, 3.3245554)
+size = Vector3(1.285669, 1.01, 2.1136096)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
 noise_type = 2
@@ -156,7 +156,7 @@ albedo_texture = ExtResource("23_kwxqj")
 
 [node name="Node3D" type="Node3D" unique_id=948481011]
 
-[node name="Meowless Sterling" type="CharacterBody3D" parent="." unique_id=1172522146 node_paths=PackedStringArray("Hands")]
+[node name="Meowless Sterling" type="CharacterBody3D" parent="." unique_id=1172522146 node_paths=PackedStringArray("Hands", "SlashArea")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.67421424, 15.010633)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -169,11 +169,11 @@ STOP_SPEED = 12.0
 GRAVITY = 9.0
 JUMP_FORCE = 3.0
 AIR_CONTROL = 0.1
-STRIDE = 50
-STRIDE_SPEED = 6
+SCRATCH_DAMAGE = 2
 STANDING_SHAPE = ExtResource("2_27nt3")
 CROUCHING_SHAPE = ExtResource("3_on6gc")
 Hands = NodePath("Camera3D/hands")
+SlashArea = NodePath("Camera3D/Slash/ScratchHurtbox")
 slashMaterial = ExtResource("10_w5m8u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meowless Sterling" unique_id=556513734]
@@ -212,6 +212,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_knhaw")
 
 [node name="fuckerupper" type="ColorRect" parent="Meowless Sterling/Camera3D" unique_id=360259068]
+visible = false
 material = SubResource("ShaderMaterial_5lo0n")
 offset_right = 1284.0
 offset_bottom = 725.0
@@ -279,31 +280,31 @@ transform = Transform3D(0.90301144, -0.18207905, -0.35021153, 0.19765733, 0.9802
 [node name="sharp" parent="Meowless Sterling/Camera3D/Slash" unique_id=1783683282 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.82609826, 0.5635261, 0, -0.5635261, 0.82609826, 0, 0, 0, 1, -0.565, -0.255, -1.245)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp" index="0" unique_id=1235521112]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp" index="0" unique_id=1216690151]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
 [node name="sharp3" parent="Meowless Sterling/Camera3D/Slash" unique_id=1987012430 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.54317445, -0.8396199, 0, 0.8396199, 0.54317445, 0, 0, 0, 1, -0.415, -0.41, -1.5)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp3" index="0" unique_id=1235521112]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp3" index="0" unique_id=1216690151]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
 [node name="sharp2" parent="Meowless Sterling/Camera3D/Slash" unique_id=916159610 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.36487675, 0.93105584, 0, -0.93105584, 0.36487675, 0, 0, 0, 1, -0.485, 0.04, -1.185)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp2" index="0" unique_id=1235521112]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp2" index="0" unique_id=1216690151]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Meowless Sterling/Camera3D/Slash" unique_id=1467474726]
 stream = ExtResource("13_pxrhj")
 
-[node name="Area3D" type="Area3D" parent="Meowless Sterling/Camera3D/Slash" unique_id=1369513506]
+[node name="ScratchHurtbox" type="Area3D" parent="Meowless Sterling/Camera3D/Slash" unique_id=1369513506]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Meowless Sterling/Camera3D/Slash/Area3D" unique_id=1157857631]
-transform = Transform3D(0.9999999, -9.313226e-08, 0, -1.4211982e-06, 0.9999989, 0, 5.364418e-07, 5.9604645e-08, 1, -1.9073486e-06, 2.3841858e-07, -1.5160322)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meowless Sterling/Camera3D/Slash/ScratchHurtbox" unique_id=1157857631]
+transform = Transform3D(0.9999999, -9.313226e-08, 0, -1.4211982e-06, 0.9999989, 0, 5.364418e-07, 5.9604645e-08, 1, -0.57306194, 1.3113022e-06, -0.91056824)
 shape = SubResource("BoxShape3D_kwxqj")
 
 [node name="bulletPoint" type="Node3D" parent="Meowless Sterling/Camera3D" unique_id=1555956657]

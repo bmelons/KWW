@@ -24,6 +24,7 @@ Main="*uid://my2la8l8pv60"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="viewport"
 
 [input]
 

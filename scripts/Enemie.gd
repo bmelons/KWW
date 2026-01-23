@@ -1,9 +1,9 @@
 extends CharacterBody3D
 class_name Enemy
 
-var hp :float = 6 : set = _set_hp
+@export var hp :float = 6 : set = _set_hp
 var explosion = preload("res://prefabs/explosion.tscn")
-#var yvel
+#var yvelB
 func _set_hp(to):
 	var old_hp = hp
 	hp = to

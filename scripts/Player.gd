@@ -12,23 +12,20 @@ enum states {GROUNDED, FALLING, IDLE}
 @export var STOP_SPEED := 10.0
 @export var GRAVITY := 80.0
 @export var MAX_FALL_SPEED := 500.0
-@export var ACCELERATE := 10.0
-@export var AIR_ACCELERATE := 0.7
-@export var MOVE_FRICTION := 6.0
 @export var JUMP_FORCE := 27.0
 @export var AIR_CONTROL = 0.9
-@export var STEP_SIZE := 1.8
-@export var MAX_HANG := 0.2
-@export var PLAYER_HEIGHT = 3.6
-@export var CROUCH_HEIGHT := 2.0
-@export var STRIDE := 150
-@export var STRIDE_SPEED := 3
-@export var is_dead = false
+@export var STRIDE := 50.0
+@export var STRIDE_SPEED := 4.0
+@export var MAX_AIR_SCRATCHES = 5
+@export var SCRATCH_COOLDOWN := 0.7
+@export var SCRATCH_DAMAGE = 3
+@export var isDead = false
 
 @export var STANDING_SHAPE : CapsuleShape3D
 @export var CROUCHING_SHAPE : CapsuleShape3D
 
 @export var Hands : Node2D
+@export var SlashArea : Area3D
 
 var currentGun : int : set = set_current_gun
 var gunObject : Weapon
@@ -37,9 +34,13 @@ var rocktick = 0
 var yvel = 0
 var lastJumpInput = 0
 var lastRealJump = 0
+var currentAirScratches :int = 0;
 var airtime = 0
 var wallJumps = 0
 var lust = 0
+var lastScratch = 0
+var isScratchHurtboxEnabled := false
+var scratchBuffer = []
 
 @onready var cam = $Camera3D;
 @onready var collider := $CollisionShape3D
@@ -52,13 +53,13 @@ var lust = 0
 @onready var bulletpoint = $Camera3D/bulletPoint
 @onready var bulletpoint2 = $Camera3D/bulletPoint2
 
+
 func _ready() -> void:
 	Main.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	slashMaterial["albedo_color"] = Color(1,1,1,0)
 	await get_tree().create_timer(.1).timeout
 	currentGun = 0
-	
 	pass
 
 func get_hand_texture():
@@ -106,9 +107,7 @@ func ground_check():
 func get_look_vector():
 	return -cam.basis.z
 
-func slash_visual():
-	#Material.
-	pass
+
 
 func scroll():
 	if Input.is_action_just_pressed("gun_next"):
@@ -161,12 +160,25 @@ func slash_do():
 	var tw = get_tree().create_tween()
 	tw.tween_property($Camera3D/Slash,"scale",Vector3(1,1,2),.2)
 	tw.play()
+	scratchBuffer = []
+	isScratchHurtboxEnabled = true
 	await get_tree().create_timer(.2).timeout
+	isScratchHurtboxEnabled = false
+	if lh.texture != tx:
+		return
 	lh.texture = old
-
+func scratch_deal_damage():
+	var collisions = SlashArea.get_overlapping_bodies()
+	for i in collisions:
+		if i == self or self.is_ancestor_of(i):
+			continue
+		if i.has_method("_impact") and not scratchBuffer.has(i):
+			print(i.name)
+			scratchBuffer.append(i)
+			i._impact(SCRATCH_DAMAGE)
 
 func _process(delta: float) -> void:
-	if is_dead:
+	if isDead:
 		get_tree().reload_current_scene()
 	var move_direction = get_move_direction()* WALK_SPEED
 	scroll()
@@ -180,11 +192,18 @@ func _process(delta: float) -> void:
 		collider.shape = STANDING_SHAPE
 		global_position.y += (STANDING_SHAPE.height-CROUCHING_SHAPE.height)/2
 	
-	if Input.is_action_just_pressed("scratch") and not gunObject.occupiesBothArms:
-		slash_do()
+	if Input.is_action_just_pressed("scratch") and not gunObject.occupiesBothArms and (Main.tick()-lastScratch) > SCRATCH_COOLDOWN:
+		if currentAirScratches < MAX_AIR_SCRATCHES:
+			currentAirScratches+=1
+			lastScratch = Main.tick()
+			slash_do()
 	slashMaterial["albedo_color"] = slashMaterial["albedo_color"].lerp(Color(1,1,1,0),.1) 
 	
+	if isScratchHurtboxEnabled:
+		scratch_deal_damage()
+	
 	if is_on_floor():
+		currentAirScratches = 0
 		if crouch:
 			velocity = velocity * (1- .3*delta)
 		elif Main.tick()-airtime>.1:
