@@ -218,8 +218,7 @@ func _process(delta: float) -> void:
 		if move_direction.length() < .1:
 			velocity = velocity
 		else:
-			velocity = velocity.move_toward(move_direction,.8 * AIR_CONTROL)
-			velocity = velocity.normalized() * AIR_SPEED
+			velocity = velocity.move_toward(move_direction* AIR_SPEED,.8 * AIR_CONTROL)
 	velocity.y = yvel
 	if is_on_wall():
 		velocity *= .8

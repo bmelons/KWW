@@ -285,21 +285,21 @@ transform = Transform3D(0.90301144, -0.18207905, -0.35021153, 0.19765733, 0.9802
 [node name="sharp" parent="Meowless Sterling/Camera3D/Slash" unique_id=1783683282 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.82609826, 0.5635261, 0, -0.5635261, 0.82609826, 0, 0, 0, 1, -0.565, -0.255, -1.245)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp" index="0" unique_id=1235521112]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp" index="0" unique_id=1216690151]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
 [node name="sharp3" parent="Meowless Sterling/Camera3D/Slash" unique_id=1987012430 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.54317445, -0.8396199, 0, 0.8396199, 0.54317445, 0, 0, 0, 1, -0.415, -0.41, -1.5)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp3" index="0" unique_id=1235521112]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp3" index="0" unique_id=1216690151]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
 [node name="sharp2" parent="Meowless Sterling/Camera3D/Slash" unique_id=916159610 instance=ExtResource("13_wu6cg")]
 transform = Transform3D(0.36487675, 0.93105584, 0, -0.93105584, 0.36487675, 0, 0, 0, 1, -0.485, 0.04, -1.185)
 
-[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp2" index="0" unique_id=1235521112]
+[node name="NurbsPath" parent="Meowless Sterling/Camera3D/Slash/sharp2" index="0" unique_id=1216690151]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("10_w5m8u")
 
