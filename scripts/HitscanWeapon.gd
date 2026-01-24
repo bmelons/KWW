@@ -12,13 +12,19 @@ class_name HitscanWeapon
 @export var iconFrame : int
 var fireDebounce = false
 var triggerDown = false
-var lastFire := 0.01
+var lastFire := 0.01 : set = set_lastFire
 	
 var beamorigin = Main.player.bulletpoint
 #var rh : Sprite2D
 #var icon : Sprite2D
 
+func set_lastFire(n):
+	lastFire = n
+	Main.cooldownStorage[name] = n
+
 func _ready():
+	if Main.cooldownStorage.has(name):
+		lastFire = Main.cooldownStorage[name]
 	Camera = Main.player.cam
 	Main.player.rh.texture = hand
 	Main.player.lh.texture = Main.player.get_hand_texture()

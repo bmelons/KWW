@@ -5,20 +5,20 @@ enum states {GROUNDED, FALLING, IDLE}
 @export var GUNS : Array[PackedScene]
 
 
-@export var MOUSE_SENS := .2
-@export var JUMP_COOLDOWN := .1
-@export var AIR_SPEED := 32.0
-@export var WALK_SPEED := 16
-@export var STOP_SPEED := 10.0
-@export var GRAVITY := 80.0
-@export var MAX_FALL_SPEED := 500.0
-@export var JUMP_FORCE := 27.0
-@export var AIR_CONTROL = 0.9
-@export var STRIDE := 50.0
-@export var STRIDE_SPEED := 4.0
-@export var MAX_AIR_SCRATCHES = 5
-@export var SCRATCH_COOLDOWN := 0.7
-@export var SCRATCH_DAMAGE = 3
+@export var MOUSE_SENS : float = .2
+@export var JUMP_COOLDOWN : float = .1
+@export var AIR_SPEED : float = 32.0
+@export var WALK_SPEED : float= 16
+@export var SLIDE_DASH_SPEED_MULTIPLIER : float = 1.5
+@export var GRAVITY : float = 80.0
+@export var MAX_FALL_SPEED : float = 500.0
+@export var JUMP_FORCE : float = 27.0
+@export var AIR_CONTROL : float = 0.9
+@export var STRIDE : float = 50.0
+@export var STRIDE_SPEED : float = 4.0
+@export var MAX_AIR_SCRATCHES : int = 5
+@export var SCRATCH_COOLDOWN : float = 0.7
+@export var SCRATCH_DAMAGE : float = 3
 @export var isDead = false
 
 @export var STANDING_SHAPE : CapsuleShape3D
@@ -134,7 +134,6 @@ func jumpstuff(move_direction:Vector3,delta):
 	if Input.is_action_just_pressed("jump"):
 			lastJumpInput = Main.tick()
 	if is_on_floor() and Main.tick()-lastRealJump > JUMP_COOLDOWN:
-		
 		wallJumps = 0
 		yvel = 0
 		lastRealJump = Main.tick()
@@ -157,7 +156,15 @@ func slash_do():
 	velocity = look * max(velocity.length(),16)
 	yvel = velocity.y * 0.3
 	slashMaterial["albedo_color"] = Color(1,1,1,1)
+	
 	var tw = get_tree().create_tween()
+	print(cam.fov)
+	cam.fov = 100
+	tw.set_trans(Tween.TRANS_QUINT)
+	tw.set_ease(Tween.EASE_OUT)
+	#tw.ease
+	tw.set_parallel()
+	tw.tween_property(cam,"fov",90,.2)
 	tw.tween_property($Camera3D/Slash,"scale",Vector3(1,1,2),.2)
 	tw.play()
 	scratchBuffer = []
@@ -176,6 +183,9 @@ func scratch_deal_damage():
 			print(i.name)
 			scratchBuffer.append(i)
 			i._impact(SCRATCH_DAMAGE)
+
+func is_sliding():
+	return Input.is_action_pressed("crouch") and is_on_floor() and velocity.length() > 0
 
 func _process(delta: float) -> void:
 	if isDead:
@@ -205,7 +215,9 @@ func _process(delta: float) -> void:
 	if is_on_floor():
 		currentAirScratches = 0
 		if crouch:
-			velocity = velocity * (1- .3*delta)
+			if isScratchHurtboxEnabled and velocity.length() > 5.0:
+				velocity = velocity.normalized() * WALK_SPEED*1.5
+			velocity = velocity * (1- .5*delta)
 		elif Main.tick()-airtime>.1:
 			if move_direction.length() < .5:
 				velocity = velocity.move_toward(move_direction,.5)

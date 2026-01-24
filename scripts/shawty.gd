@@ -5,8 +5,18 @@ extends HitscanWeapon
 @export var maxSpreadAngle:float = 15
 @export var damp : float = 1.5
 @export var MAX_KNOCKS = 3
-var current_knocks = 0
+var current_knocks = 0 : set = set_knocks
+
+func set_knocks(n) -> void:
+	current_knocks = n
+	Main.cooldownStorage[name+"KNOX"] = n
+
 func _ready():
+	if Main.cooldownStorage.has(name):
+		lastFire = Main.cooldownStorage[name]
+	if Main.cooldownStorage.has(name+"KNOX"):
+		print(Main.cooldownStorage[name+"KNOX"])
+		current_knocks = Main.cooldownStorage[name+"KNOX"]
 	Camera = Main.player.cam
 	Main.player.rh.texture = hand
 	Main.player.lh.texture = altHand
@@ -46,7 +56,6 @@ func Fire():
 	HitscanRay.rotation = Vector3(angle.x,angle.y,0)
 	$gunshot.play()
 	var FireDirection = HitscanRay.global_transform
-	
 	var space_state = get_world_3d().direct_space_state
 	var end = HitscanRay.global_transform * Transform3D(Basis.IDENTITY,HitscanRay.target_position)
 	var query = PhysicsRayQueryParameters3D.create(HitscanRay.global_position,end.origin)

@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://32euk40eo882"]
+
+[ext_resource type="Script" uid="uid://3bhojjrthkj0" path="res://scripts/Player.gd" id="1_k3dvv"]
+[ext_resource type="PackedScene" uid="uid://cce8yt034lp31" path="res://prefabs/revolver.tscn" id="2_nqoyg"]
+[ext_resource type="PackedScene" uid="uid://b0gp1oagnu4c1" path="res://prefabs/shawty.tscn" id="3_ex2yl"]
+[ext_resource type="PackedScene" uid="uid://di2gucd7reutw" path="res://prefabs/dual-macs.tscn" id="4_n8hql"]
+[ext_resource type="Shape3D" uid="uid://cpl7mw331ybw8" path="res://data/standing.tres" id="5_gg5gu"]
+[ext_resource type="Shape3D" uid="uid://0kvoo1gqh4mq" path="res://data/Crouch.tres" id="6_tja1j"]
+[ext_resource type="Material" uid="uid://dk5uqgu23muh7" path="res://Shaders/new_standard_material_3d.tres" id="7_3mo3g"]
+[ext_resource type="Texture2D" uid="uid://c1cc0bcse0417" path="res://hands/hands1.png" id="8_ymuag"]
+[ext_resource type="Texture2D" uid="uid://dn83aofwibgea" path="res://hands/hands4.png" id="9_fvowr"]
+[ext_resource type="Shader" uid="uid://ck0t40glbtnxt" path="res://Shaders/fuckupper.gdshader" id="10_gydvo"]
+[ext_resource type="Texture2D" uid="uid://d0lcyq822rdlo" path="res://Textures/tool.png" id="11_63yv6"]
+[ext_resource type="PackedScene" uid="uid://vkv0sghw4j2r" path="res://models/sharp.gltf" id="12_jd7hh"]
+[ext_resource type="AudioStream" uid="uid://t2dxgsnt7i2h" path="res://sound/sfx/lunge.ogg" id="13_go3yv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nb6l6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06s8g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5lo0n"]
+shader = ExtResource("10_gydvo")
+shader_parameter/washout_intensity = 0.3
+shader_parameter/blur_amount = 0.0
+shader_parameter/blockiness = 600.0
+shader_parameter/color_steps = 13.2630002499925
+shader_parameter/grain_amount = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7rhm"]
+bg_color = Color(0.15844831, 0.71, 0.14909998, 1)
+
+[sub_resource type="Gradient" id="Gradient_4adup"]
+offsets = PackedFloat32Array(0.018072288, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fudvv"]
+gradient = SubResource("Gradient_4adup")
+width = 17
+height = 3
+fill_from = Vector2(0.016393442, 0.023224045)
+
+[sub_resource type="Gradient" id="Gradient_t7rhm"]
+offsets = PackedFloat32Array(0.018072288, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4adup"]
+gradient = SubResource("Gradient_t7rhm")
+width = 16
+height = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwxqj"]
+size = Vector3(1.285669, 1.01, 2.1136096)
+
+[node name="Meowless Sterling" type="CharacterBody3D" unique_id=567047819 node_paths=PackedStringArray("Hands", "SlashArea")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_k3dvv")
+GUNS = Array[PackedScene]([ExtResource("2_nqoyg"), ExtResource("3_ex2yl"), ExtResource("4_n8hql")])
+AIR_SPEED = 12.0
+WALK_SPEED = 8.0
+GRAVITY = 9.0
+JUMP_FORCE = 3.0
+AIR_CONTROL = 0.1
+STANDING_SHAPE = ExtResource("5_gg5gu")
+CROUCHING_SHAPE = ExtResource("6_tja1j")
+Hands = NodePath("Camera3D/hands")
+SlashArea = NodePath("Camera3D/Slash/ScratchHurtbox")
+slashMaterial = ExtResource("7_3mo3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1310440258]
+shape = ExtResource("5_gg5gu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=351186088]
+visible = false
+mesh = SubResource("CapsuleMesh_nb6l6")
+surface_material_override/0 = SubResource("StandardMaterial3D_06s8g")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=917004617]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3609575, 0)
+current = true
+fov = 90.0
+
+[node name="hands" type="Node2D" parent="Camera3D" unique_id=616872945]
+
+[node name="RightHand" type="Sprite2D" parent="Camera3D/hands" unique_id=606058020]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("8_ymuag")
+
+[node name="LeftHand" type="Sprite2D" parent="Camera3D/hands" unique_id=483845077]
+unique_name_in_owner = true
+position = Vector2(471, 441)
+scale = Vector2(2, 2)
+texture = ExtResource("9_fvowr")
+
+[node name="AltHand" type="Sprite2D" parent="Camera3D/hands" unique_id=246365042]
+unique_name_in_owner = true
+visible = false
+position = Vector2(471, 441)
+scale = Vector2(2, 2)
+texture = ExtResource("9_fvowr")
+
+[node name="fuckerupper" type="ColorRect" parent="Camera3D" unique_id=769405179]
+visible = false
+material = SubResource("ShaderMaterial_5lo0n")
+offset_right = 1284.0
+offset_bottom = 725.0
+mouse_filter = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Camera3D" unique_id=101423472]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -90.0
+offset_right = 250.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "halt"
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_t7rhm")
+value = 50.0
+rounded = true
+
+[node name="hair" type="Node2D" parent="Camera3D" unique_id=1379707596]
+
+[node name="dropcrpsshair2" type="Sprite2D" parent="Camera3D/hair" unique_id=1736681391]
+position = Vector2(640, 360)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_fudvv")
+
+[node name="drop" type="Sprite2D" parent="Camera3D/hair" unique_id=2092360134]
+position = Vector2(640, 360)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_fudvv")
+
+[node name="crpsshair" type="Sprite2D" parent="Camera3D/hair" unique_id=1106196951]
+position = Vector2(640, 360)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_4adup")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera3D/hair" unique_id=507673265]
+position = Vector2(640, 360)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("GradientTexture2D_4adup")
+
+[node name="Node2D" type="Node2D" parent="Camera3D" unique_id=115902654]
+
+[node name="Icon" type="Sprite2D" parent="Camera3D/Node2D" unique_id=1753386508]
+unique_name_in_owner = true
+position = Vector2(77, 73)
+texture = ExtResource("11_63yv6")
+hframes = 4
+
+[node name="ClimbRay" type="RayCast3D" parent="Camera3D" unique_id=1658892752]
+target_position = Vector3(0, 0, -1)
+
+[node name="Slash" type="Node3D" parent="Camera3D" unique_id=2056618971]
+transform = Transform3D(0.90301144, -0.18207905, -0.35021153, 0.19765733, 0.98027116, 0, 0.381447, -0.0769132, 0.8290668, -0.775, -0.32, 0)
+
+[node name="sharp" parent="Camera3D/Slash" unique_id=319123395 instance=ExtResource("12_jd7hh")]
+transform = Transform3D(0.82609826, 0.5635261, 0, -0.5635261, 0.82609826, 0, 0, 0, 1, -0.565, -0.255, -1.245)
+
+[node name="NurbsPath" parent="Camera3D/Slash/sharp" index="0" unique_id=1216690151]
+transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
+surface_material_override/0 = ExtResource("7_3mo3g")
+
+[node name="sharp3" parent="Camera3D/Slash" unique_id=1334983637 instance=ExtResource("12_jd7hh")]
+transform = Transform3D(0.54317445, -0.8396199, 0, 0.8396199, 0.54317445, 0, 0, 0, 1, -0.415, -0.41, -1.5)
+
+[node name="NurbsPath" parent="Camera3D/Slash/sharp3" index="0" unique_id=1216690151]
+transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
+surface_material_override/0 = ExtResource("7_3mo3g")
+
+[node name="sharp2" parent="Camera3D/Slash" unique_id=2024729080 instance=ExtResource("12_jd7hh")]
+transform = Transform3D(0.36487675, 0.93105584, 0, -0.93105584, 0.36487675, 0, 0, 0, 1, -0.485, 0.04, -1.185)
+
+[node name="NurbsPath" parent="Camera3D/Slash/sharp2" index="0" unique_id=1216690151]
+transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
+surface_material_override/0 = ExtResource("7_3mo3g")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D/Slash" unique_id=603572543]
+stream = ExtResource("13_go3yv")
+
+[node name="ScratchHurtbox" type="Area3D" parent="Camera3D/Slash" unique_id=1782886071]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Slash/ScratchHurtbox" unique_id=371993777]
+transform = Transform3D(0.9999999, -9.313226e-08, 0, -1.4211982e-06, 0.9999989, 0, 5.364418e-07, 5.9604645e-08, 1, -0.57306194, 1.3113022e-06, -0.91056824)
+shape = SubResource("BoxShape3D_kwxqj")
+
+[node name="bulletPoint" type="Node3D" parent="Camera3D" unique_id=790486943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20423487, -0.10353875, -0.23657799)
+
+[node name="bulletPoint2" type="Node3D" parent="Camera3D" unique_id=1747713424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22411847, -0.104, -0.23700047)
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=62331592]
+target_position = Vector3(0, -1.01, 0)
+
+[editable path="Camera3D/Slash/sharp"]
+[editable path="Camera3D/Slash/sharp3"]
+[editable path="Camera3D/Slash/sharp2"]

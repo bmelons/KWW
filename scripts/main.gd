@@ -9,3 +9,4 @@ func tick():
 	return float(Time.get_ticks_msec())/1000
 
 var player : Player
+var cooldownStorage : Dictionary[String,float] = {}
