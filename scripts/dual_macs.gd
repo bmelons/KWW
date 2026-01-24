@@ -4,6 +4,7 @@ extends HitscanWeapon
 @export var altHand:Texture2D
 
 func _ready():
+	hitscan_exceptions()
 	Camera = Main.player.cam
 	Main.player.rh.texture = hand
 	Main.player.lh.texture = altHand

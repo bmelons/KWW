@@ -4,6 +4,8 @@ enum states {GROUNDED, FALLING, IDLE}
 
 @export var GUNS : Array[PackedScene]
 
+@export var MAX_HEALTH :float = 100
+@export var Health :float = 100 : set = set_hp
 
 @export var MOUSE_SENS : float = .2
 @export var JUMP_COOLDOWN : float = .1
@@ -52,7 +54,15 @@ var scratchBuffer = []
 @onready var ah = $Camera3D/hands/AltHand
 @onready var bulletpoint = $Camera3D/bulletPoint
 @onready var bulletpoint2 = $Camera3D/bulletPoint2
+@onready var hpBar = $Camera3D/ProgressBar
 
+
+func set_hp(to):
+	Health = to
+	$Playerdamage.play()
+	if to <= 0:
+		isDead = true
+	
 
 func _ready() -> void:
 	Main.player = self
@@ -187,7 +197,14 @@ func scratch_deal_damage():
 func is_sliding():
 	return Input.is_action_pressed("crouch") and is_on_floor() and velocity.length() > 0
 
+func update_ui():
+	hpBar.value = Health
+
+func _impact(dmg):
+	Health -= dmg
+
 func _process(delta: float) -> void:
+	update_ui()
 	if isDead:
 		get_tree().reload_current_scene()
 	var move_direction = get_move_direction()* WALK_SPEED

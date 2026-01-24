@@ -6,12 +6,13 @@ extends HitscanWeapon
 @export var damp : float = 1.5
 @export var MAX_KNOCKS = 3
 var current_knocks = 0 : set = set_knocks
-
+var exclusions =[]
 func set_knocks(n) -> void:
 	current_knocks = n
 	Main.cooldownStorage[name+"KNOX"] = n
 
 func _ready():
+	exclusions = hitscan_exceptions()
 	if Main.cooldownStorage.has(name):
 		lastFire = Main.cooldownStorage[name]
 	if Main.cooldownStorage.has(name+"KNOX"):
@@ -59,6 +60,8 @@ func Fire():
 	var space_state = get_world_3d().direct_space_state
 	var end = HitscanRay.global_transform * Transform3D(Basis.IDENTITY,HitscanRay.target_position)
 	var query = PhysicsRayQueryParameters3D.create(HitscanRay.global_position,end.origin)
+	query.exclude = exclusions
+	
 	var result = space_state.intersect_ray(query)
 	
 	if result == {}:

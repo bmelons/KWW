@@ -22,7 +22,14 @@ func set_lastFire(n):
 	lastFire = n
 	Main.cooldownStorage[name] = n
 
+func hitscan_exceptions():
+	var exclusions = [Main.player]
+	HitscanRay.add_exception(Main.player)
+	return exclusions
+	
+
 func _ready():
+	hitscan_exceptions()
 	if Main.cooldownStorage.has(name):
 		lastFire = Main.cooldownStorage[name]
 	Camera = Main.player.cam

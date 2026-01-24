@@ -14,4 +14,6 @@ func _process(delta: float) -> void:
 	if timer > 6:
 		timer = 0
 		frame += 1
+	if not get_viewport().get_camera_3d():
+		return
 	global_transform = global_transform.looking_at(get_viewport().get_camera_3d().global_position)
