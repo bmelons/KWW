@@ -3,6 +3,7 @@ class_name ProjectileBase
 
 @export var MOVE_SPEED :float = 20.0
 @export var DAMAGE : float = 12.0
+#var offsets = [Vector3.ZERO,Vector3(.1,0,0)]
 var explosion = preload("res://prefabs/explosion.tscn")
 func _process(delta: float) -> void:
 	var move_dir = -basis.z * delta* MOVE_SPEED

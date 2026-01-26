@@ -3,6 +3,12 @@ extends HitscanWeapon
 
 @export var altHand:Texture2D
 
+var a = false
+var blow = {
+	true:Main.player.bulletpoint2,
+	false:Main.player.bulletpoint
+}
+
 func _ready():
 	hitscan_exceptions()
 	Camera = Main.player.cam
@@ -11,7 +17,5 @@ func _ready():
 	Main.player.icon.frame = iconFrame
 
 func _add_fire():
-	if beamorigin == Main.player.bulletpoint:
-		beamorigin = Main.player.bulletpoint2
-	else:
-		beamorigin == Main.player.bulletpoint
+	a = not a
+	beamorigin = blow[a]

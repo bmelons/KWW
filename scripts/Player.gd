@@ -233,7 +233,7 @@ func _process(delta: float) -> void:
 		currentAirScratches = 0
 		if crouch:
 			if isScratchHurtboxEnabled and velocity.length() > 5.0:
-				velocity = velocity.normalized() * WALK_SPEED*1.5
+				velocity = velocity.normalized() * WALK_SPEED*2
 			velocity = velocity * (1- .5*delta)
 		elif Main.tick()-airtime>.1:
 			if move_direction.length() < .5:

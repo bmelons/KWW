@@ -8,12 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://2jlvb1rbfgtr" path="res://Textures/bldg098M.jpg" id="7_t7rhm"]
 [ext_resource type="AudioStream" uid="uid://dvh2aabwdv6bm" path="res://sound/music/BRABBA.mp3" id="13_wu6cg"]
 [ext_resource type="AudioStream" uid="uid://bbosoc08ier1m" path="res://sound/sfx/ohhhhh-no.mp3" id="14_muxxg"]
+[ext_resource type="Script" uid="uid://wyhy3duunu7" path="res://scripts/punchGrunt.gd" id="15_fswsm"]
+[ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="15_vmx02"]
 [ext_resource type="Script" uid="uid://bbydyrq3aalsu" path="res://scripts/bulletGrunt.gd" id="16_be1oa"]
 [ext_resource type="Texture2D" uid="uid://dqeto562vdtus" path="res://Textures/Screenshot 2025-03-01 120220.png" id="20_t2qnd"]
 [ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="21_u06m6"]
 [ext_resource type="Texture2D" uid="uid://dovgq7v2lh5jt" path="res://data/Screenshot 2025-04-19 231844.png" id="22_q4fe8"]
 [ext_resource type="Texture2D" uid="uid://bd7j5ho1e2dp6" path="res://Textures/Screenshot 2025-11-15 145200.png" id="23_kwxqj"]
-[ext_resource type="Texture2D" uid="uid://ciow2jopoljva" path="res://data/Screenshot 2025-09-04 223842.png" id="25_ar4hd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
 noise_type = 2
@@ -121,18 +122,86 @@ albedo_texture = ExtResource("22_q4fe8")
 albedo_color = Color(0.44470042, 0.96434087, 0, 1)
 albedo_texture = ExtResource("23_kwxqj")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlcvy"]
-albedo_texture = ExtResource("25_ar4hd")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wu6cg"]
 albedo_color = Color(1, 0.03529412, 1, 1)
 rim = 0.27
 rim_tint = 0.52
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w5m8u"]
+radius = 1.0
+
+[sub_resource type="Curve" id="Curve_fswsm"]
+_data = [Vector2(0.0067114085, 0.962708), 0.0, -2.600448, 0, 0, Vector2(1, 0), 0.013151532, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vmx02"]
+curve = SubResource("Curve_fswsm")
+
+[sub_resource type="Gradient" id="Gradient_muxxg"]
+offsets = PackedFloat32Array(0, 0.97540987)
+colors = PackedColorArray(0.14999998, 1, 0, 1, 0, 1, 0.5333333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5lo0n"]
+gradient = SubResource("Gradient_muxxg")
+
+[sub_resource type="Curve" id="Curve_pxrhj"]
+_limits = [0.0, 1.3, 0.0, 1.0]
+_data = [Vector2(0, 1.2127366), 0.0, 0.0, 0, 0, Vector2(1, 1.3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t2qnd"]
+curve = SubResource("Curve_pxrhj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u06m6"]
+direction = Vector3(0, 1, 0)
+spread = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_t2qnd")
+color_ramp = SubResource("GradientTexture1D_5lo0n")
+alpha_curve = SubResource("CurveTexture_vmx02")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5m8u"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_fswsm"]
+material = SubResource("StandardMaterial3D_w5m8u")
+inner_radius = 0.949
+outer_radius = 1.1
+rings = 6
+ring_segments = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fswsm"]
+transparency = 1
+blend_mode = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.25882354)
+
+[sub_resource type="TorusMesh" id="TorusMesh_vmx02"]
+material = SubResource("StandardMaterial3D_fswsm")
+rings = 8
+ring_segments = 6
+
 [node name="Node3D" type="Node3D" unique_id=948481011]
 
 [node name="Meowless Sterling" parent="." unique_id=567047819 instance=ExtResource("1_plyut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.67421424, 15.010633)
+MAX_HEALTH = null
+Health = null
+MOUSE_SENS = null
+JUMP_COOLDOWN = null
+SLIDE_DASH_SPEED_MULTIPLIER = null
+MAX_FALL_SPEED = null
+STRIDE = null
+STRIDE_SPEED = null
+MAX_AIR_SCRATCHES = null
+SCRATCH_COOLDOWN = null
+SCRATCH_DAMAGE = null
+isDead = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033836403]
 environment = SubResource("Environment_4adup")
@@ -256,28 +325,6 @@ stream = ExtResource("14_muxxg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime5/looker" unique_id=1961710505]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="Enime6" type="CharacterBody3D" parent="enemy spawns" unique_id=1351801762]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4664307, -2.2324383, -4.865821)
-script = ExtResource("4_to3d4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime6" unique_id=1020047795]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime6" unique_id=888884768]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime6" unique_id=734858962]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="enemy spawns/Enime6" unique_id=1464622149]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime6/looker" unique_id=1312101881]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
 mesh = SubResource("CylinderMesh_vmx02")
 surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
@@ -565,38 +612,70 @@ SUMMER 2014"
 font = ExtResource("21_u06m6")
 font_size = 118
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="environment" unique_id=694998823]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.89735, 0.8316544, -18.994478)
-material_override = SubResource("StandardMaterial3D_hlcvy")
-mesh = SubResource("QuadMesh_u06m6")
-surface_material_override/0 = SubResource("StandardMaterial3D_q4fe8")
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2048353895]
 stream = ExtResource("13_wu6cg")
 pitch_scale = 1.2
 autoplay = true
 parameters/looping = true
 
-[node name="GRUNG" type="CharacterBody3D" parent="." unique_id=1593619125]
+[node name="gun boy" type="CharacterBody3D" parent="." unique_id=1593619125]
 script = ExtResource("16_be1oa")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GRUNG" unique_id=1856658044]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gun boy" unique_id=1856658044]
 shape = SubResource("CapsuleShape3D_t7rhm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GRUNG" unique_id=974925229]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gun boy" unique_id=974925229]
 mesh = SubResource("CapsuleMesh_4adup")
 surface_material_override/0 = SubResource("StandardMaterial3D_wu6cg")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GRUNG" unique_id=1365441282]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="gun boy" unique_id=1365441282]
 stream = ExtResource("14_muxxg")
 
-[node name="gunshot" type="AudioStreamPlayer3D" parent="GRUNG" unique_id=649420476]
+[node name="gunshot" type="AudioStreamPlayer3D" parent="gun boy" unique_id=649420476]
 stream = ExtResource("5_w5m8u")
 
-[node name="looker" type="Node3D" parent="GRUNG" unique_id=1318168001]
+[node name="looker" type="Node3D" parent="gun boy" unique_id=1318168001]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GRUNG/looker" unique_id=1023448944]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gun boy/looker" unique_id=1023448944]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
 mesh = SubResource("CylinderMesh_vmx02")
 surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="PUNCHER" type="CharacterBody3D" parent="." unique_id=1351801762]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4664307, -1.4212779, -4.865821)
+script = ExtResource("15_fswsm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PUNCHER" unique_id=1020047795]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PUNCHER" unique_id=888884768]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PUNCHER" unique_id=734858962]
+stream = ExtResource("14_muxxg")
+
+[node name="looker" type="Node3D" parent="PUNCHER" unique_id=1464622149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PUNCHER/looker" unique_id=1312101881]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="Goal" type="Area3D" parent="." unique_id=534796107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.475292, 1.7927897, 62.30677)
+script = ExtResource("15_vmx02")
+whereTo = ExtResource("1_plyut")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal" unique_id=1934341071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_w5m8u")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Goal" unique_id=1800399094]
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_u06m6")
+draw_passes = 2
+draw_pass_1 = SubResource("TorusMesh_fswsm")
+draw_pass_2 = SubResource("TorusMesh_vmx02")

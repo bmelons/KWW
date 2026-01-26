@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://g3oet8gwct3s"]
+
+[ext_resource type="Script" uid="uid://cr2ldq7mkbjw8" path="res://scenes/scream.gd" id="1_bqrrl"]
+[ext_resource type="AudioStream" uid="uid://dp0n5pwxjnno0" path="res://sound/music/pickin.mp3" id="2_clwuq"]
+
+[node name="Loss" type="Control" unique_id=1152305160]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqrrl")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1595423705]
+offset = Vector2(640, 360)
+
+[node name="Label" type="Label" parent="." unique_id=1161497665]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 165.0
+offset_right = 870.0
+offset_bottom = 586.0
+theme_override_font_sizes/font_size = 165
+text = "YOURE A
+WEINER"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=591441071]
+stream = ExtResource("2_clwuq")
+pitch_scale = 0.9
+autoplay = true
+
+[node name="Button" type="Button" parent="." unique_id=590904125]
+layout_mode = 0
+offset_left = 1025.0
+offset_top = 264.0
+offset_right = 1185.0
+offset_bottom = 471.0
+text = "GO"

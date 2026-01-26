@@ -1,9 +1,10 @@
 extends Enemy
 @export var WALK_SPEED :float = 2
+#@export var 
+var MAX_FALL_SPEED = 500.0
+var GRAVITY : float = 9.0
 const  PROJECTILE_SPEED = 20
 var yvel = 0
-var GRAVITY : float = 9.0
-var MAX_FALL_SPEED = 500.0
 
 var last_fire = 0
 const BULLET = preload("res://prefabs/bullet.tscn")
@@ -16,13 +17,15 @@ func _process(delta: float) -> void:
 	velocity.y = yvel
 	ai_action()
 	move_and_slide()
-	
-func vector_to_player() -> Vector3: ## returns a vector that represents the distance and direction the player is to the enemy
-	return Main.player.global_position-global_position
-	
-func distance_to_player() -> float : ## returns enemy distance to player
-	return (Main.player.global_position-global_position).length()
+	line_of_sight()
 
+
+func randomVector3():
+	return Vector3(
+		randf_range(-1,1),
+		randf_range(-1,1),
+		randf_range(-1,1)
+	)
 
 func calculate_trajectory():
 	var pos = Main.player.position
@@ -32,13 +35,13 @@ func calculate_trajectory():
 	for i in range(1,5):
 		dist = ((pos+(vel*time_to_reach))-global_position).length()
 		time_to_reach = dist/PROJECTILE_SPEED
-	return global_transform.looking_at( (pos+(vel*time_to_reach)) )
+	return global_transform.looking_at( (pos+(vel*time_to_reach)) + randomVector3() ) 
 	
 		
 
 func ai_action():
 	$looker.global_transform = global_transform.looking_at(Main.player.global_position)
-	if (Main.tick()-last_fire) > .6:
+	if (Main.tick()-last_fire) > .7:
 		last_fire = Main.tick()
 		var shoot = BULLET.instantiate()
 		get_tree().root.add_child(shoot)

@@ -10,3 +10,6 @@ func tick():
 
 var player : Player
 var cooldownStorage : Dictionary[String,float] = {}
+var GRAVITY :float = 9.0
+var msg : String = ""
+var nextScene : PackedScene
