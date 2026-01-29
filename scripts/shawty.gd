@@ -71,7 +71,7 @@ func Fire():
 		var location = HitscanRay.global_position + dir
 		boom.Set(HitscanRay.global_position,location)
 		return
-	print(result)
+	#print(result)
 	var col = result.collider
 	var point = result.position
 	var boom : Beam = Laser.instantiate()

@@ -11,8 +11,6 @@
 [ext_resource type="Script" uid="uid://wyhy3duunu7" path="res://scripts/punchGrunt.gd" id="15_fswsm"]
 [ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="15_vmx02"]
 [ext_resource type="Script" uid="uid://bbydyrq3aalsu" path="res://scripts/bulletGrunt.gd" id="16_be1oa"]
-[ext_resource type="PackedScene" uid="uid://bv47ga6o2wfpu" path="res://models/cat.glb" id="16_vmx02"]
-[ext_resource type="Texture2D" uid="uid://kgdb1etutgge" path="res://models/cat_Untitled.png" id="18_5lo0n"]
 [ext_resource type="Texture2D" uid="uid://dqeto562vdtus" path="res://Textures/Screenshot 2025-03-01 120220.png" id="20_t2qnd"]
 [ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="21_u06m6"]
 [ext_resource type="Texture2D" uid="uid://dovgq7v2lh5jt" path="res://data/Screenshot 2025-04-19 231844.png" id="22_q4fe8"]
@@ -186,14 +184,6 @@ albedo_color = Color(1, 1, 1, 0.25882354)
 material = SubResource("StandardMaterial3D_fswsm")
 rings = 8
 ring_segments = 6
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muxxg"]
-shading_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_texture = ExtResource("18_5lo0n")
-billboard_mode = 2
-billboard_keep_scale = true
 
 [node name="Node3D" type="Node3D" unique_id=948481011]
 
@@ -690,11 +680,3 @@ process_material = SubResource("ParticleProcessMaterial_u06m6")
 draw_passes = 2
 draw_pass_1 = SubResource("TorusMesh_fswsm")
 draw_pass_2 = SubResource("TorusMesh_vmx02")
-
-[node name="cat" parent="." unique_id=1142433245 instance=ExtResource("16_vmx02")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -1.294, 0)
-
-[node name="Sphere" parent="cat" index="0" unique_id=1205037432]
-surface_material_override/0 = SubResource("StandardMaterial3D_muxxg")
-
-[editable path="cat"]

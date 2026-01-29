@@ -9,7 +9,14 @@ var yvel = 0
 var last_fire = 0
 const BULLET = preload("res://prefabs/bullet.tscn")
 
-func _process(delta: float) -> void:
+func _ready() -> void:
+	onAwake.connect(printit)
+	pass
+
+func printit():
+	print("Yeha baby")
+
+func _step(delta: float) -> void:
 	yvel = max(yvel-GRAVITY*delta,-MAX_FALL_SPEED)
 	if is_on_floor():
 		yvel = 0
@@ -17,7 +24,7 @@ func _process(delta: float) -> void:
 	velocity.y = yvel
 	ai_action()
 	move_and_slide()
-	line_of_sight()
+	
 
 
 func randomVector3():
@@ -40,6 +47,8 @@ func calculate_trajectory():
 		
 
 func ai_action():
+	if isAsleep:
+		return
 	$looker.global_transform = global_transform.looking_at(Main.player.global_position)
 	if (Main.tick()-last_fire) > .7:
 		last_fire = Main.tick()
@@ -49,6 +58,10 @@ func ai_action():
 
 func ai_move_direction() -> Vector3:
 	#print(distance_to_player())
+	
+	if isAsleep:
+		return Vector3(0,0,0)
+	
 	if distance_to_player() >= 10:
 		return (vector_to_player()*Vector3(1,0,1)).normalized() * WALK_SPEED * 1.5
 	elif distance_to_player() < 3:
