@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://capy1o4bi846g"]
 
 [ext_resource type="PackedScene" uid="uid://32euk40eo882" path="res://prefabs/meowless_sterling.tscn" id="1_plyut"]
-[ext_resource type="Script" uid="uid://dhck2v1ssea4o" path="res://scripts/Enemie.gd" id="4_to3d4"]
+[ext_resource type="PackedScene" uid="uid://d12dn455pntwb" path="res://prefabs/box.tscn" id="3_muxxg"]
 [ext_resource type="PackedScene" uid="uid://w3ogjasqrdym" path="res://prefabs/explosion.tscn" id="4_v3j7y"]
 [ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="5_m681r"]
 [ext_resource type="AudioStream" uid="uid://dsrs0nqrclbqx" path="res://sound/sfx/crunchygunshot.ogg" id="5_w5m8u"]
@@ -60,23 +60,6 @@ fog_density = 0.0358
 
 [sub_resource type="Compositor" id="Compositor_fudvv"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7rhm"]
-radius = 0.55
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4adup"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to3d4"]
-albedo_color = Color(0.33906627, 0, 0.013944141, 1)
-rim = 0.27
-rim_tint = 0.52
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_vmx02"]
-top_radius = 0.1
-bottom_radius = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmx02"]
-albedo_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_m681r"]
 size = Vector3(40, 2, 40)
 
@@ -123,8 +106,25 @@ albedo_texture = ExtResource("22_q4fe8")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_be1oa"]
 albedo_texture = ExtResource("23_kwxqj")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7rhm"]
+radius = 0.55
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4adup"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wu6cg"]
 albedo_color = Color(1, 0.03529412, 1, 1)
+rim = 0.27
+rim_tint = 0.52
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vmx02"]
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmx02"]
+albedo_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to3d4"]
+albedo_color = Color(0.33906627, 0, 0.013944141, 1)
 rim = 0.27
 rim_tint = 0.52
 
@@ -251,159 +251,23 @@ transform = Transform3D(13.734647, 14.538207, 0, -14.538207, 13.734647, 0, 0, 0,
 
 [node name="enemy spawns" type="Node3D" parent="." unique_id=2123573351]
 
-[node name="Enime2" type="CharacterBody3D" parent="enemy spawns" unique_id=116040031]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7436705, -2.2324383, -1.2745657)
-script = ExtResource("4_to3d4")
+[node name="Box" parent="enemy spawns" unique_id=1239594905 instance=ExtResource("3_muxxg")]
+transform = Transform3D(0.10817282, 0, 0.9941321, 0, 1, 0, -0.9941321, 0, 0.10817282, -6.3327703, -2.5890746, -0.3469565)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime2" unique_id=58769666]
-shape = SubResource("CapsuleShape3D_t7rhm")
+[node name="Box2" parent="enemy spawns" unique_id=81789213 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.3327703, -2.5890746, -1.4473164)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime2" unique_id=1106346744]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
+[node name="Box4" parent="enemy spawns" unique_id=1182811273 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-0.07673648, 0, 0.99705136, 0, 1, 0, -0.99705136, 0, -0.07673648, -6.3327703, -1.4528557, -0.29942262)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime2" unique_id=1330778550]
-stream = ExtResource("14_muxxg")
+[node name="Box6" parent="enemy spawns" unique_id=1880598365 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-0.07673648, 0, 0.99705136, 0, 1, 0, -0.99705136, 0, -0.07673648, -6.3327703, -1.4528557, -1.3653877)
 
-[node name="looker" type="Node3D" parent="enemy spawns/Enime2" unique_id=1502824282]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+[node name="Box5" parent="enemy spawns" unique_id=155905995 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.3327703, -0.40155602, -0.8138119)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime2/looker" unique_id=867083145]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="Enime3" type="CharacterBody3D" parent="enemy spawns" unique_id=1823031775]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7436705, -2.2324383, -3.2745657)
-script = ExtResource("4_to3d4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime3" unique_id=366233317]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime3" unique_id=176979182]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime3" unique_id=964785364]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="enemy spawns/Enime3" unique_id=855921921]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime3/looker" unique_id=299102877]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="Enime4" type="CharacterBody3D" parent="enemy spawns" unique_id=1836387829]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.880249, -2.2324383, -2.1390872)
-script = ExtResource("4_to3d4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime4" unique_id=1220251009]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime4" unique_id=1602691733]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime4" unique_id=708432137]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="enemy spawns/Enime4" unique_id=1153047815]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime4/looker" unique_id=695823728]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="Enime5" type="CharacterBody3D" parent="enemy spawns" unique_id=929614370]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.880249, -2.2324383, -4.139087)
-script = ExtResource("4_to3d4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime5" unique_id=828737762]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime5" unique_id=712221636]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime5" unique_id=1418566264]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="enemy spawns/Enime5" unique_id=555742565]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime5/looker" unique_id=1961710505]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="Enime7" type="CharacterBody3D" parent="enemy spawns" unique_id=154503808]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4664307, -2.2324383, -6.865821)
-script = ExtResource("4_to3d4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime7" unique_id=1344430995]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime7" unique_id=33664013]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime7" unique_id=437357340]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="enemy spawns/Enime7" unique_id=1552846814]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime7/looker" unique_id=792936875]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="Enime8" type="CharacterBody3D" parent="enemy spawns" unique_id=1626724034]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.603009, -2.2324383, -5.7303424)
-script = ExtResource("4_to3d4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime8" unique_id=1663112507]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime8" unique_id=1825175959]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime8" unique_id=1352590982]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="enemy spawns/Enime8" unique_id=1333812634]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime8/looker" unique_id=755278224]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="Enime9" type="CharacterBody3D" parent="enemy spawns" unique_id=1199589618]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.603009, -2.2324383, -7.7303424)
-script = ExtResource("4_to3d4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy spawns/Enime9" unique_id=1670759203]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime9" unique_id=733502595]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy spawns/Enime9" unique_id=2127451245]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="enemy spawns/Enime9" unique_id=127783545]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy spawns/Enime9/looker" unique_id=3543382]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+[node name="Box3" parent="enemy spawns" unique_id=1355681411 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-0.086547226, 0, 0.99624777, 0, 1, 0, -0.99624777, 0, -0.086547226, -6.3327703, -2.5890746, -2.5546517)
 
 [node name="environment" type="Node3D" parent="." unique_id=1715485145]
 

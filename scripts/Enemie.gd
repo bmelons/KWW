@@ -46,13 +46,14 @@ func line_of_sight() -> bool: ## can the enemy SEEEE the player
 func _set_hp(to):
 	var old_hp = hp
 	hp = to
-	if to-old_hp < 0:
+	if to-old_hp < 0 and has_node("AudioStreamPlayer3D"):
 		$AudioStreamPlayer3D.play(0)
 	if to <= 0:
 		die()
 func die():
 	var beeb = explosion.instantiate()
 	get_tree().root.add_child(beeb)
+	beeb.sc = Vector3.ONE*3
 	beeb.global_position = global_position
 	queue_free()
 

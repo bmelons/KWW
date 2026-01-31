@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d12dn455pntwb"]
+
+[ext_resource type="Script" uid="uid://dttgxmsrblwd3" path="res://scripts/box.gd" id="1_m3rsv"]
+[ext_resource type="Texture2D" uid="uid://pobjlg175mha" path="res://Textures/env/crate.png" id="2_hmdbr"]
+[ext_resource type="AudioStream" uid="uid://bbosoc08ier1m" path="res://sound/sfx/ohhhhh-no.mp3" id="3_jx637"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5lo0n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_muxxg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lo0n"]
+albedo_texture = ExtResource("2_hmdbr")
+rim = 0.27
+rim_tint = 0.52
+uv1_scale = Vector3(3, 2, 2)
+
+[node name="Box" type="CharacterBody3D" unique_id=1239594905]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_m3rsv")
+hp = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=791270092]
+shape = SubResource("BoxShape3D_5lo0n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=760528091]
+mesh = SubResource("BoxMesh_muxxg")
+surface_material_override/0 = SubResource("StandardMaterial3D_5lo0n")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1418769646]
+stream = ExtResource("3_jx637")
