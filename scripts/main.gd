@@ -13,3 +13,4 @@ var cooldownStorage : Dictionary[String,float] = {}
 var GRAVITY :float = 9.0
 var msg : String = ""
 var nextScene : PackedScene
+var PERSIST_GUNS : Array[PackedScene]

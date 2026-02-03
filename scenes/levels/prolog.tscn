@@ -1,0 +1,298 @@
+[gd_scene format=3 uid="uid://d4dk04i2beow3"]
+
+[ext_resource type="PackedScene" uid="uid://32euk40eo882" path="res://prefabs/meowless_sterling.tscn" id="1_jvtda"]
+[ext_resource type="PackedScene" uid="uid://cce8yt034lp31" path="res://prefabs/revolver.tscn" id="2_jjdg2"]
+[ext_resource type="PackedScene" uid="uid://w3ogjasqrdym" path="res://prefabs/explosion.tscn" id="2_q31br"]
+[ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="4_5nih6"]
+[ext_resource type="Texture2D" uid="uid://c5cna0c5r8752" path="res://Textures/oh boy.png" id="6_l8fcb"]
+[ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="7_0jjfi"]
+[ext_resource type="AudioStream" uid="uid://dvh2aabwdv6bm" path="res://sound/music/BRABBA.mp3" id="10_6p4xn"]
+[ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="17_glu4l"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
+noise_type = 2
+frequency = 0.7787
+offset = Vector3(0, -271.6, 0)
+fractal_type = 0
+fractal_octaves = 2
+fractal_lacunarity = 1.555
+fractal_gain = 0.14
+fractal_weighted_strength = 1.0
+cellular_jitter = 1.09
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t7rhm"]
+noise = SubResource("FastNoiseLite_to3d4")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_to3d4"]
+sky_top_color = Color(0.66399986, 0.52, 1, 1)
+sky_horizon_color = Color(0.71079123, 0.8284792, 0.9101225, 1)
+sky_curve = 0.22735734
+sky_cover = SubResource("NoiseTexture2D_t7rhm")
+sky_cover_modulate = Color(0.4810815, 0.75954086, 0.9546663, 1)
+ground_bottom_color = Color(0.5548229, 0.69404054, 0.6555659, 1)
+ground_curve = 0.12996037
+use_debanding = false
+energy_multiplier = 0.6
+
+[sub_resource type="Sky" id="Sky_t7rhm"]
+sky_material = SubResource("ProceduralSkyMaterial_to3d4")
+
+[sub_resource type="Environment" id="Environment_4adup"]
+background_mode = 2
+sky = SubResource("Sky_t7rhm")
+ambient_light_source = 3
+ssao_radius = 0.53
+ssao_intensity = 1.0
+glow_intensity = 1.0
+glow_bloom = 0.07
+fog_light_color = Color(0.46565884, 0.63558894, 0.8344578, 1)
+fog_light_energy = 0.0
+fog_density = 0.0358
+
+[sub_resource type="Compositor" id="Compositor_fudvv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m681r"]
+size = Vector3(40, 2, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3j7y"]
+lightmap_size_hint = Vector2i(404, 226)
+add_uv2 = true
+size = Vector3(40, 2, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m681r"]
+albedo_color = Color(0.55, 0.5346, 0.50600004, 1)
+albedo_texture = ExtResource("4_5nih6")
+uv1_scale = Vector3(80, 80, 0)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w5m8u"]
+radius = 1.0
+
+[sub_resource type="Curve" id="Curve_fswsm"]
+_data = [Vector2(0.0067114085, 0.962708), 0.0, -2.600448, 0, 0, Vector2(1, 0), 0.013151532, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vmx02"]
+curve = SubResource("Curve_fswsm")
+
+[sub_resource type="Gradient" id="Gradient_muxxg"]
+offsets = PackedFloat32Array(0, 0.97540987)
+colors = PackedColorArray(0.14999998, 1, 0, 1, 0, 1, 0.5333333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5lo0n"]
+gradient = SubResource("Gradient_muxxg")
+
+[sub_resource type="Curve" id="Curve_pxrhj"]
+_limits = [0.0, 1.3, 0.0, 1.0]
+_data = [Vector2(0, 1.2127366), 0.0, 0.0, 0, 0, Vector2(1, 1.3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t2qnd"]
+curve = SubResource("Curve_pxrhj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u06m6"]
+direction = Vector3(0, 1, 0)
+spread = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_t2qnd")
+color_ramp = SubResource("GradientTexture1D_5lo0n")
+alpha_curve = SubResource("CurveTexture_vmx02")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5m8u"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_fswsm"]
+material = SubResource("StandardMaterial3D_w5m8u")
+inner_radius = 0.949
+outer_radius = 1.1
+rings = 6
+ring_segments = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fswsm"]
+transparency = 1
+blend_mode = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.25882354)
+
+[sub_resource type="TorusMesh" id="TorusMesh_vmx02"]
+material = SubResource("StandardMaterial3D_fswsm")
+rings = 8
+ring_segments = 6
+
+[node name="Node3D" type="Node3D" unique_id=948481011]
+
+[node name="Meowless Sterling" parent="." unique_id=567047819 instance=ExtResource("1_jvtda")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.921917, -0.67421424, -2.1382344)
+GUNS = Array[PackedScene]([ExtResource("2_jjdg2")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033836403]
+environment = SubResource("Environment_4adup")
+compositor = SubResource("Compositor_fudvv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1840727974]
+transform = Transform3D(0.943763, -0.10264445, 0.31428576, -0.3164528, -0.0051312586, 0.9485944, -0.09575526, -0.9947049, -0.037324812, 4.7683716e-07, 2.4514542, -2.6639464)
+light_color = Color(0.90999997, 0.9715, 1, 1)
+light_energy = 0.326
+light_indirect_energy = 2.415
+light_volumetric_fog_energy = 0.0
+light_specular = 6.861
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="plosions" type="Node3D" parent="." unique_id=749653973]
+
+[node name="Explosion" parent="plosions" unique_id=1673234860 instance=ExtResource("2_q31br")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, -1.0787449, 12.307005)
+
+[node name="Explosion2" parent="plosions" unique_id=851498901 instance=ExtResource("2_q31br")]
+transform = Transform3D(1.1418036, -0.8562933, 1.4010876, 0.5409476, 1.8074186, 0.66378754, -1.5503743, 0, 1.2634634, -0.012007616, -0.3489852, 12.241366)
+
+[node name="Explosion3" parent="plosions" unique_id=1852653835 instance=ExtResource("2_q31br")]
+transform = Transform3D(1.895195, 0, 2.3255615, 0, 3, 0, -2.3255615, 0, 1.895195, -0.031183783, 1.2684093, 12.241366)
+flip_h = true
+
+[node name="Explosion4" parent="plosions" unique_id=142382346 instance=ExtResource("2_q31br")]
+transform = Transform3D(0.68673235, 0.72691035, 0, -0.72691035, 0.68673235, 0, 0, 0, 1, -0.7356631, -1.0586267, 12.307005)
+
+[node name="Explosion5" parent="plosions" unique_id=972344653 instance=ExtResource("2_q31br")]
+transform = Transform3D(0.39089295, 1.2014751, 1.5503743, -1.9018756, 0.6187642, 0, -0.47965807, -1.4743096, 1.2634634, -0.19165796, -0.39822268, 12.438282)
+
+[node name="Explosion6" parent="plosions" unique_id=938012548 instance=ExtResource("2_q31br")]
+transform = Transform3D(13.734647, 14.538207, 0, -14.538207, 13.734647, 0, 0, 0, 20, 0.97050774, 0.5532403, 1.4584904)
+
+[node name="environment" type="Node3D" parent="." unique_id=1715485145]
+
+[node name="fleur" type="StaticBody3D" parent="environment" unique_id=1442678125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -4.235, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur" unique_id=1649602832]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur" unique_id=2091235086]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur5" type="StaticBody3D" parent="environment" unique_id=1078141715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, -4.235, 10)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur5" unique_id=502775673]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur5" unique_id=78895242]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur4" type="StaticBody3D" parent="environment" unique_id=296939338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4.718263, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur4" unique_id=1053192620]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur4" unique_id=1275615314]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur2" type="StaticBody3D" parent="environment" unique_id=123950371]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14, -4.235, -8)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur2" unique_id=470912158]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur2" unique_id=1284846560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022125244, 0.0023350716, -0.0034184456)
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur6" type="StaticBody3D" parent="environment" unique_id=195203821]
+transform = Transform3D(0.70710677, 0.70710677, -3.090862e-08, 0, -4.371139e-08, -1, -0.70710677, 0.70710677, -3.090862e-08, -45.412586, -4.235, 3)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur6" unique_id=1930609019]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur6" unique_id=2116507587]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur3" type="StaticBody3D" parent="environment" unique_id=1403853763]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14, -4.235, 3)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur3" unique_id=261547977]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur3" unique_id=355339363]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur9" type="StaticBody3D" parent="environment" unique_id=863189622]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -38, -4.235, 31)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur9" unique_id=1376188356]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur9" unique_id=55890810]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur7" type="StaticBody3D" parent="environment" unique_id=256582995]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -33, -4.235, 24)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur7" unique_id=1488334178]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur7" unique_id=2039493024]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="fleur8" type="StaticBody3D" parent="environment" unique_id=1758562858]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -46, -4.235, 24)
+
+[node name="Floor" type="CollisionShape3D" parent="environment/fleur8" unique_id=467308770]
+shape = SubResource("BoxShape3D_m681r")
+
+[node name="Floor2" type="MeshInstance3D" parent="environment/fleur8" unique_id=503963776]
+mesh = SubResource("BoxMesh_v3j7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_m681r")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2048353895]
+stream = ExtResource("10_6p4xn")
+pitch_scale = 1.2
+autoplay = true
+parameters/looping = true
+
+[node name="f" type="Area3D" parent="." unique_id=534796107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, -2.4199257, 24)
+script = ExtResource("17_glu4l")
+whereTo = ExtResource("1_jvtda")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="f" unique_id=1934341071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_w5m8u")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="f" unique_id=1800399094]
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_u06m6")
+draw_passes = 2
+draw_pass_1 = SubResource("TorusMesh_fswsm")
+draw_pass_2 = SubResource("TorusMesh_vmx02")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1107454031]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.302183, -0.33740193, -1.2293358)
+texture = ExtResource("6_l8fcb")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=918147772]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.733697, -1.3423952, -4.947177)
+layers = 513
+text = "he put hit out on you go 
+kill him NOW or 1000
+animals with weapns
+will kill you"
+font = ExtResource("7_0jjfi")
+
+[node name="Label3D3" type="Label3D" parent="." unique_id=1946518030]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30.37537, -1.9895668, -2.3560362)
+text = "that IS how wanted posters work, stupid"

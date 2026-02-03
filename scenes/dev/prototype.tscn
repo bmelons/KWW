@@ -123,10 +123,14 @@ bottom_radius = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmx02"]
 albedo_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to3d4"]
-albedo_color = Color(0.33906627, 0, 0.013944141, 1)
-rim = 0.27
-rim_tint = 0.52
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muxxg"]
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("18_5lo0n")
+emission = Color(1, 1, 1, 1)
+texture_filter = 0
+billboard_keep_scale = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_w5m8u"]
 radius = 1.0
@@ -186,15 +190,6 @@ albedo_color = Color(1, 1, 1, 0.25882354)
 material = SubResource("StandardMaterial3D_fswsm")
 rings = 8
 ring_segments = 6
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muxxg"]
-shading_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_texture = ExtResource("18_5lo0n")
-emission = Color(1, 1, 1, 1)
-texture_filter = 0
-billboard_keep_scale = true
 
 [node name="Node3D" type="Node3D" unique_id=948481011]
 
@@ -268,6 +263,24 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.3
 
 [node name="Box3" parent="enemy spawns" unique_id=1355681411 instance=ExtResource("3_muxxg")]
 transform = Transform3D(-0.086547226, 0, 0.99624777, 0, 1, 0, -0.99624777, 0, -0.086547226, -6.3327703, -2.5890746, -2.5546517)
+
+[node name="Box7" parent="enemy spawns" unique_id=1120166640 instance=ExtResource("3_muxxg")]
+transform = Transform3D(0.10817282, 0, 0.9941321, 0, 1, 0, -0.9941321, 0, 0.10817282, -6.3327703, 1.3155735, -1.2803235)
+
+[node name="Box8" parent="enemy spawns" unique_id=430822110 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.3327703, 1.3155735, -2.3806834)
+
+[node name="Box9" parent="enemy spawns" unique_id=1066009806 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-0.07673648, 0, 0.99705136, 0, 1, 0, -0.99705136, 0, -0.07673648, -6.3327703, 2.4517922, -1.2327896)
+
+[node name="Box10" parent="enemy spawns" unique_id=1895764226 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-0.07673648, 0, 0.99705136, 0, 1, 0, -0.99705136, 0, -0.07673648, -6.3327703, 2.4517922, -2.2987547)
+
+[node name="Box11" parent="enemy spawns" unique_id=1884466333 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.3327703, 3.503092, -1.7471789)
+
+[node name="Box12" parent="enemy spawns" unique_id=1201034385 instance=ExtResource("3_muxxg")]
+transform = Transform3D(-0.086547226, 0, 0.99624777, 0, 1, 0, -0.99624777, 0, -0.086547226, -6.3327703, 1.3155735, -3.4880188)
 
 [node name="environment" type="Node3D" parent="." unique_id=1715485145]
 
@@ -436,7 +449,7 @@ material_override = SubResource("StandardMaterial3D_ar4hd")
 mesh = SubResource("BoxMesh_fudvv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="environment" unique_id=1802197954]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5364659, -0.326496, -18.597198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5364659, 0.7903042, -18.95527)
 mesh = SubResource("QuadMesh_u06m6")
 surface_material_override/0 = SubResource("StandardMaterial3D_q4fe8")
 
@@ -525,10 +538,6 @@ script = ExtResource("15_fswsm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PUNCHER" unique_id=1020047795]
 shape = SubResource("CapsuleShape3D_t7rhm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PUNCHER" unique_id=888884768]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_to3d4")
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PUNCHER" unique_id=734858962]
 stream = ExtResource("14_muxxg")
 
@@ -539,6 +548,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
 mesh = SubResource("CylinderMesh_vmx02")
 surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="cat" parent="PUNCHER" unique_id=1142433245 instance=ExtResource("16_vmx02")]
+transform = Transform3D(-0.165, 0, -2.491431e-08, 0, 0.165, 0, 2.491431e-08, 0, -0.165, 0, 0.6270822, 0)
+
+[node name="Sphere" parent="PUNCHER/cat" index="0" unique_id=1205037432]
+surface_material_override/0 = SubResource("StandardMaterial3D_muxxg")
 
 [node name="Goal" type="Area3D" parent="." unique_id=534796107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.475292, 1.7927897, 62.30677)
@@ -556,10 +571,4 @@ draw_passes = 2
 draw_pass_1 = SubResource("TorusMesh_fswsm")
 draw_pass_2 = SubResource("TorusMesh_vmx02")
 
-[node name="cat" parent="." unique_id=1142433245 instance=ExtResource("16_vmx02")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -1.294, 0)
-
-[node name="Sphere" parent="cat" index="0" unique_id=1294248872]
-surface_material_override/0 = SubResource("StandardMaterial3D_muxxg")
-
-[editable path="cat"]
+[editable path="PUNCHER/cat"]

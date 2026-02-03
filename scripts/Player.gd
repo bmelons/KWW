@@ -3,6 +3,7 @@ class_name Player
 enum states {GROUNDED, FALLING, IDLE}
 
 @export var GUNS : Array[PackedScene]
+@export var assert_Guns: bool = false ## change the persistent gun list to this one
 
 @export var MAX_HEALTH :float = 100
 @export var Health :float = 100 : set = set_hp
@@ -70,12 +71,18 @@ func _ready() -> void:
 	slashMaterial["albedo_color"] = Color(1,1,1,0)
 	await get_tree().create_timer(.1).timeout
 	currentGun = 0
+	if assert_Guns:
+		pass
 	pass
 
 func get_hand_texture():
 	return load("uid://dn83aofwibgea")
 
 func set_current_gun(to:int):
+	if to+1 > GUNS.size():
+		return
+	if to < 0:
+		return
 	print("set")
 	currentGun = to
 	if gunObject:
