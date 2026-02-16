@@ -8,7 +8,6 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 0.9939374, 0.9939374, 0.93926454, 0.830
 gradient = SubResource("Gradient_w5m8u")
 
 [resource]
-transparency = 1
 cull_mode = 1
 albedo_color = Color(1, 1, 1, 0.6901961)
 albedo_texture = SubResource("GradientTexture2D_fswsm")

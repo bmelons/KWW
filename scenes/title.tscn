@@ -1,34 +1,94 @@
 [gd_scene format=3 uid="uid://byj3sht41o16f"]
 
-[ext_resource type="Texture2D" uid="uid://begwgshpncthr" path="res://Textures/title/Layer 4.png" id="1_4rr2b"]
 [ext_resource type="Texture2D" uid="uid://de5v8d0tqshbp" path="res://Textures/title/flamingtext_com-29508311523.png" id="1_ia1n6"]
+[ext_resource type="Texture2D" uid="uid://bp4khjligp16o" path="res://new_noise_texture_2d.tres" id="1_kcc3o"]
+[ext_resource type="Texture2D" uid="uid://63s024rox0qy" path="res://Textures/titletrim/beer/Layer 4.png" id="1_ygloa"]
 [ext_resource type="Script" uid="uid://dxtt6tt3c03nv" path="res://scenes/animate.gd" id="2_hiwto"]
-[ext_resource type="Texture2D" uid="uid://cn37fmyroohh0" path="res://Textures/title/head.png" id="2_yql1r"]
+[ext_resource type="Texture2D" uid="uid://bshhrso454rlg" path="res://Textures/titletrim/beer/head.png" id="3_6civk"]
 [ext_resource type="Texture2D" uid="uid://k85qro5gvykr" path="res://Textures/title/shoulder.png" id="3_ia1n6"]
 [ext_resource type="Texture2D" uid="uid://bijsa7y40n62e" path="res://Textures/title/Layer 3.png" id="4_hiwto"]
 [ext_resource type="Texture2D" uid="uid://bp74q7ntwwkcu" path="res://Textures/title/Layer 5.png" id="5_w65of"]
 [ext_resource type="Script" uid="uid://b3dm3t6ml42iy" path="res://scripts/floater.gd" id="6_ygloa"]
 [ext_resource type="PackedScene" uid="uid://d2vi4smouq2wy" path="res://models/text/Untitled.glb" id="9_hiwto"]
 [ext_resource type="Script" uid="uid://dllb5n6i8k0ms" path="res://scripts/spinner.gd" id="10_w65of"]
+[ext_resource type="AudioStream" uid="uid://166plh2ln2bd" path="res://sound/music/life.mp3" id="11_ygloa"]
+[ext_resource type="Texture2D" uid="uid://c7xriabjwixhx" path="res://Textures/title/flamingtext_com-3085708370.png" id="13_7af2g"]
+[ext_resource type="Material" uid="uid://dk5uqgu23muh7" path="res://Shaders/new_standard_material_3d.tres" id="15_6rcc6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcc3o"]
+albedo_texture = ExtResource("1_kcc3o")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ah8jo"]
+material = ExtResource("15_6rcc6")
+flip_faces = true
+top_radius = 1.0
+bottom_radius = 1.0
+height = 30.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Gradient" id="Gradient_81wt4"]
+interpolation_color_space = 2
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kcc3o"]
+gradient = SubResource("Gradient_81wt4")
+width = 720
+height = 1280
+fill_from = Vector2(0.4862298, 0)
+fill_to = Vector2(1, 0.008547009)
 
 [node name="Title" type="Node2D" unique_id=1346187941]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1596614944]
+offset_left = -640.0
+offset_top = -360.0
+scale = Vector2(2, 2)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=239164216]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=328328393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24919963, 0.710863)
+cull_mask = 1048574
+fov = 134.4
+near = 0.009
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" unique_id=55945048]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.058284163, 0.39151287)
+layers = 2
+material_override = SubResource("StandardMaterial3D_kcc3o")
+mesh = SubResource("CylinderMesh_ah8jo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport" unique_id=706715869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32306552, 0.81599176)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1606035923]
+visible = false
+position = Vector2(-3.0000005, 105.000015)
+rotation = 1.5707964
+scale = Vector2(1.385, 1.385)
+texture = SubResource("GradientTexture2D_kcc3o")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=113428501]
 
 [node name="youless" type="Node2D" parent="." unique_id=643180479]
 
 [node name="Sprite2D3" type="Sprite2D" parent="youless" unique_id=1975559752]
-position = Vector2(-107.87, 0)
+position = Vector2(-206, 155)
 scale = Vector2(2.3, 2.3)
-texture = ExtResource("1_4rr2b")
+texture = ExtResource("1_ygloa")
 script = ExtResource("6_ygloa")
 speed = 0.4
 y_magnitude = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="youless" unique_id=1272619496]
-position = Vector2(-107.87, 0)
+position = Vector2(-436, -7)
 scale = Vector2(2.3, 2.3)
-texture = ExtResource("2_yql1r")
+texture = ExtResource("3_6civk")
 script = ExtResource("6_ygloa")
 speed = 0.4
 y_magnitude = 8
@@ -57,32 +117,49 @@ script = ExtResource("6_ygloa")
 speed = 0.4
 y_magnitude = 35
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=239708243]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1503935898]
+stream = ExtResource("11_ygloa")
+autoplay = true
+parameters/looping = true
+
+[node name="Node2D" type="Node2D" parent="." unique_id=981079741]
+script = ExtResource("6_ygloa")
+speed = 0.2
+y_magnitude = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=239708243]
 position = Vector2(124.999985, -264.99997)
 scale = Vector2(1.275, 1.275)
 texture = ExtResource("1_ia1n6")
 hframes = 3
 vframes = 2
 script = ExtResource("2_hiwto")
+framePerFrame = 12
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1596614944]
-offset_left = 413.0
-offset_top = -389.0
-offset_right = 541.0
-offset_bottom = -261.0
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D" unique_id=1426105130]
+position = Vector2(285, -180)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("13_7af2g")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Node2D" unique_id=1759442059]
+offset_left = -640.0
+offset_top = -360.0
 scale = Vector2(2, 2)
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=239164216]
+[node name="SubViewport" type="SubViewport" parent="Node2D/SubViewportContainer" unique_id=1282172633]
 transparent_bg = true
-size = Vector2i(128, 128)
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=328328393]
+[node name="Camera3D" type="Camera3D" parent="Node2D/SubViewportContainer/SubViewport" unique_id=1695807925]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24919963, 0.710863)
+cull_mask = 1048573
 fov = 134.4
 near = 0.009
 
-[node name="Untitled" parent="SubViewportContainer/SubViewport" unique_id=1565961713 instance=ExtResource("9_hiwto")]
+[node name="Untitled" parent="Node2D/SubViewportContainer/SubViewport" unique_id=1565961713 instance=ExtResource("9_hiwto")]
 script = ExtResource("10_w65of")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport" unique_id=453819510]
+[node name="OmniLight3D" type="OmniLight3D" parent="Node2D/SubViewportContainer" unique_id=48602563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32306552, 0.81599176)
