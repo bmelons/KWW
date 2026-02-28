@@ -7,10 +7,9 @@ var isAsleep : bool = true : set = _set_isAsleep
 
 signal onAwake
 
-# jan 26 2026 7pm 
-# so fucking sad right now so im leaving this permanent mark on my git repo
-# i wish they had loved me like i love them
-
+# feb 27 2026
+# SHUT UP!!!!
+# dork
 
 func _step(delta): ## process abastraction
 	pass
@@ -51,9 +50,9 @@ func _set_hp(to):
 	if to <= 0:
 		die()
 func die():
-	var beeb = explosion.instantiate()
+	var beeb : Sprite3D = explosion.instantiate()
 	get_tree().root.add_child(beeb)
-	beeb.sc = Vector3.ONE*3
+	beeb.scale = Vector3.ONE*3
 	beeb.global_position = global_position
 	queue_free()
 

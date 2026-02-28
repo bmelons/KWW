@@ -8,6 +8,10 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 0.9939374, 0.9939374, 0.93926454, 0.830
 gradient = SubResource("Gradient_w5m8u")
 
 [resource]
-cull_mode = 1
-albedo_color = Color(1, 1, 1, 0.6901961)
+transparency = 1
+depth_draw_mode = 2
+no_depth_test = true
+albedo_color = Color(1, 1, 1, 0.9019608)
 albedo_texture = SubResource("GradientTexture2D_fswsm")
+heightmap_scale = -2.385
+backlight = Color(1, 1, 1, 1)

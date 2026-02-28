@@ -292,7 +292,14 @@ kill him NOW or 1000
 animals with weapns
 will kill you"
 font = ExtResource("7_0jjfi")
+outline_size = 32
 
 [node name="Label3D3" type="Label3D" parent="." unique_id=1946518030]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30.37537, -1.9895668, -2.3560362)
-text = "that IS how wanted posters work, stupid"
+text = "<h2 style=\"booty:big;\">that 
+IS how wanted posters work, stupid.<h1>
+<div>
+keep your eyes closed when turning this corner
+LOLOLOLOLOLO</p>"
+font_size = 40
+outline_size = 127

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://da4hti50qhxcp"]
+
+[ext_resource type="Script" uid="uid://dy484qwb4yomq" path="res://scripts/explosive_projectile_tumbling.gd" id="1_j7kkd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_an273"]
+friction = 1.1
+bounce = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_muxxg"]
+top_radius = 0.11
+bottom_radius = 0.1
+height = 0.3
+radial_segments = 5
+rings = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lo0n"]
+albedo_color = Color(1, 0.7255, 0.39, 1)
+rim_enabled = true
+rim = 0.13
+rim_tint = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlcvy"]
+albedo_color = Color(0.37, 0.31302002, 0.21460001, 1)
+rim_enabled = true
+rim = 0.13
+rim_tint = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_an273"]
+radius = 0.37
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q4fe8"]
+radius = 4.0
+
+[node name="nade" type="RigidBody3D" unique_id=1362883402]
+mass = 30.0
+physics_material_override = SubResource("PhysicsMaterial_an273")
+gravity_scale = 1.2
+script = ExtResource("1_j7kkd")
+
+[node name="nade" type="MeshInstance3D" parent="." unique_id=2139376003]
+mesh = SubResource("CylinderMesh_muxxg")
+surface_material_override/0 = SubResource("StandardMaterial3D_5lo0n")
+
+[node name="nade2" type="MeshInstance3D" parent="." unique_id=667004480]
+transform = Transform3D(0.755, 0, 0, 0, 0.755, 0, 0, 0, 0.755, 0, 0.09481172, 0)
+mesh = SubResource("CylinderMesh_muxxg")
+surface_material_override/0 = SubResource("StandardMaterial3D_hlcvy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1793853839]
+shape = SubResource("SphereShape3D_an273")
+
+[node name="splosionField" type="ShapeCast3D" parent="." unique_id=531292199]
+shape = SubResource("SphereShape3D_q4fe8")
+target_position = Vector3(0, 0, 0)
+debug_shape_custom_color = Color(0.7930077, 0.42517057, 5.7756904e-07, 1)

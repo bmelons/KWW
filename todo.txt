@@ -1,0 +1,19 @@
+#todo
+## importante
+grenade
+	weapon
+	actual projectile
+doors
+	sliding (vec3 offset)
+	outward (90-120)
+	club laplace, env textures and design
+	club laplace, exterior env 
+king L.O.V.E model
+rocket hammer model
+general animations
+baton kitty enemy
+model for blaster kitty
+muzzle flashes
+
+## idk if this is very important
+usable rocket hammer

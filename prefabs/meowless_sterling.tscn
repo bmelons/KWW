@@ -61,7 +61,7 @@ GUNS = Array[PackedScene]([ExtResource("2_nqoyg"), ExtResource("3_ex2yl"), ExtRe
 AIR_SPEED = 12.0
 WALK_SPEED = 8.0
 GRAVITY = 9.0
-JUMP_FORCE = 3.0
+JUMP_FORCE = 5.0
 AIR_CONTROL = 0.1
 STANDING_SHAPE = ExtResource("5_gg5gu")
 CROUCHING_SHAPE = ExtResource("6_tja1j")
@@ -173,21 +173,21 @@ transform = Transform3D(0.90301144, -0.18207905, -0.35021153, 0.19765733, 0.9802
 [node name="sharp" parent="Camera3D/Slash" unique_id=319123395 instance=ExtResource("12_jd7hh")]
 transform = Transform3D(0.82609826, 0.5635261, 0, -0.5635261, 0.82609826, 0, 0, 0, 1, -0.565, -0.255, -1.245)
 
-[node name="NurbsPath" parent="Camera3D/Slash/sharp" index="0" unique_id=1216690151]
+[node name="NurbsPath" parent="Camera3D/Slash/sharp" index="0" unique_id=2039198435]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("7_3mo3g")
 
 [node name="sharp3" parent="Camera3D/Slash" unique_id=1334983637 instance=ExtResource("12_jd7hh")]
 transform = Transform3D(0.54317445, -0.8396199, 0, 0.8396199, 0.54317445, 0, 0, 0, 1, -0.415, -0.41, -1.5)
 
-[node name="NurbsPath" parent="Camera3D/Slash/sharp3" index="0" unique_id=1216690151]
+[node name="NurbsPath" parent="Camera3D/Slash/sharp3" index="0" unique_id=2039198435]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("7_3mo3g")
 
 [node name="sharp2" parent="Camera3D/Slash" unique_id=2024729080 instance=ExtResource("12_jd7hh")]
 transform = Transform3D(0.36487675, 0.93105584, 0, -0.93105584, 0.36487675, 0, 0, 0, 1, -0.485, 0.04, -1.185)
 
-[node name="NurbsPath" parent="Camera3D/Slash/sharp2" index="0" unique_id=1216690151]
+[node name="NurbsPath" parent="Camera3D/Slash/sharp2" index="0" unique_id=2039198435]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("7_3mo3g")
 

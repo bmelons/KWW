@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://capy1o4bi846g"]
 
 [ext_resource type="PackedScene" uid="uid://32euk40eo882" path="res://prefabs/meowless_sterling.tscn" id="1_plyut"]
+[ext_resource type="PackedScene" uid="uid://cce8yt034lp31" path="res://prefabs/revolver.tscn" id="2_q4fe8"]
+[ext_resource type="PackedScene" uid="uid://b0gp1oagnu4c1" path="res://prefabs/shawty.tscn" id="3_kwxqj"]
 [ext_resource type="PackedScene" uid="uid://d12dn455pntwb" path="res://prefabs/box.tscn" id="3_muxxg"]
+[ext_resource type="PackedScene" uid="uid://di2gucd7reutw" path="res://prefabs/dual-macs.tscn" id="4_be1oa"]
 [ext_resource type="PackedScene" uid="uid://w3ogjasqrdym" path="res://prefabs/explosion.tscn" id="4_v3j7y"]
+[ext_resource type="PackedScene" uid="uid://kljbajc463mc" path="res://prefabs/pipebomb.tscn" id="5_ar4hd"]
 [ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="5_m681r"]
 [ext_resource type="AudioStream" uid="uid://dsrs0nqrclbqx" path="res://sound/sfx/crunchygunshot.ogg" id="5_w5m8u"]
 [ext_resource type="Texture2D" uid="uid://2jlvb1rbfgtr" path="res://Textures/bldg098M.jpg" id="7_t7rhm"]
@@ -15,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://kgdb1etutgge" path="res://models/cat_Untitled.png" id="18_5lo0n"]
 [ext_resource type="Texture2D" uid="uid://dqeto562vdtus" path="res://Textures/Screenshot 2025-03-01 120220.png" id="20_t2qnd"]
 [ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="21_u06m6"]
+[ext_resource type="PackedScene" uid="uid://da4hti50qhxcp" path="res://prefabs/nade.tscn" id="22_kwxqj"]
 [ext_resource type="Texture2D" uid="uid://dovgq7v2lh5jt" path="res://data/Screenshot 2025-04-19 231844.png" id="22_q4fe8"]
 [ext_resource type="Texture2D" uid="uid://bd7j5ho1e2dp6" path="res://Textures/Screenshot 2025-11-15 145200.png" id="23_kwxqj"]
 
@@ -195,6 +200,8 @@ ring_segments = 6
 
 [node name="Meowless Sterling" parent="." unique_id=567047819 instance=ExtResource("1_plyut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.67421424, 15.010633)
+GUNS = Array[PackedScene]([ExtResource("2_q4fe8"), ExtResource("3_kwxqj"), ExtResource("4_be1oa"), ExtResource("5_ar4hd")])
+assert_Guns = true
 MAX_HEALTH = null
 Health = null
 MOUSE_SENS = null
@@ -259,7 +266,7 @@ transform = Transform3D(-0.07673648, 0, 0.99705136, 0, 1, 0, -0.99705136, 0, -0.
 transform = Transform3D(-0.07673648, 0, 0.99705136, 0, 1, 0, -0.99705136, 0, -0.07673648, -6.3327703, -1.4528557, -1.3653877)
 
 [node name="Box5" parent="enemy spawns" unique_id=155905995 instance=ExtResource("3_muxxg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.3327703, -0.40155602, -0.8138119)
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -6.3327703, 5.3811164, -7.234463)
 
 [node name="Box3" parent="enemy spawns" unique_id=1355681411 instance=ExtResource("3_muxxg")]
 transform = Transform3D(-0.086547226, 0, 0.99624777, 0, 1, 0, -0.99624777, 0, -0.086547226, -6.3327703, -2.5890746, -2.5546517)
@@ -570,5 +577,9 @@ process_material = SubResource("ParticleProcessMaterial_u06m6")
 draw_passes = 2
 draw_pass_1 = SubResource("TorusMesh_fswsm")
 draw_pass_2 = SubResource("TorusMesh_vmx02")
+
+[node name="nade" parent="." unique_id=1362883402 instance=ExtResource("22_kwxqj")]
+transform = Transform3D(0.9932802, 0.115734644, 0, -0.115734644, 0.9932802, 0, 0, 0, 1, -5.55387, 0, -1.8781238)
+fuseTime = 88.0
 
 [editable path="PUNCHER/cat"]

@@ -10,6 +10,7 @@ alpha_antialiasing_mode = 0
 shading_mode = 2
 albedo_texture = ExtResource("1_lv25w")
 billboard_mode = 1
+grow_amount = 0.344
 
 [sub_resource type="QuadMesh" id="QuadMesh_pxrhj"]
 material = SubResource("StandardMaterial3D_5lo0n")

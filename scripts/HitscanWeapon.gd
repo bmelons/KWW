@@ -38,6 +38,17 @@ func _ready():
 	Main.player.icon.frame = iconFrame
 	
 
+func can_fire() -> bool:
+	return triggerDown and not fireDebounce and (Main.tick()-lastFire) > FireRate
+	## this code below aint working right and i alreadty have working code so i dont Care
+	#if not triggerDown:
+		#return false
+	#if fireDebounce:
+		#return false
+	#if (Main.tick()-lastFire) > FireRate:
+		#return false
+	#return true 
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire"):
 		$trigger.play()
@@ -47,7 +58,7 @@ func _process(delta: float) -> void:
 		triggerDown = false
 		fireDebounce = false
 	
-	if triggerDown and not fireDebounce and (Main.tick()-lastFire) > FireRate:
+	if can_fire():
 		if not Automatic:
 			fireDebounce = true
 		Fire()

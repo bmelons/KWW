@@ -135,12 +135,16 @@ func scroll():
 			currentGun = GUNS.size()-1
 		else:
 			currentGun -=1
+			
+	## TODO: i knowwww its yandev esque but i know in my head a slicker way i just dont wanna (forloop concat)
 	if Input.is_action_just_pressed("slot0") and currentGun!=0:
 		currentGun = 0
 	if Input.is_action_just_pressed("slot1") and currentGun!=1:
 		currentGun = 1
 	if Input.is_action_just_pressed("slot2") and currentGun!=2:
 		currentGun = 2
+	if Input.is_action_just_pressed("slot3") and currentGun!=3:
+		currentGun = 3
 
 func get_move_direction():
 	return Vector3(Input.get_axis("move_left","move_right"),
@@ -208,6 +212,11 @@ func update_ui():
 	hpBar.value = Health
 
 func _impact(dmg):
+	if get_stack().size()>=250:
+		
+		#breakpoint
+		return
+
 	Health -= dmg
 
 func _process(delta: float) -> void:
