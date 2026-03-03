@@ -169,6 +169,7 @@ func jumpstuff(move_direction:Vector3,delta):
 	else:
 		yvel = max(yvel-GRAVITY*delta,-MAX_FALL_SPEED)
 func slash_do():
+	$LUNGE.play()
 	var old = lh.texture
 	var tx = load("res://hands/hands9.png")
 	lh.texture = tx

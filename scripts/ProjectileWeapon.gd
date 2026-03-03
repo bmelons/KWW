@@ -26,10 +26,6 @@ func _ready() -> void:
 	Main.player.rh.texture = hand
 	Main.player.lh.texture = Main.player.get_hand_texture()
 	Main.player.icon.frame = iconFrame
-	
-	var shoot
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func can_fire() -> bool:
 	return triggerDown and not fireDebounce and (Main.tick()-lastFire) > FireRate
@@ -45,7 +41,7 @@ func Fire():
 	get_tree().root.add_child(projectile)
 	projectile.global_position = Main.player.cam.global_position 
 	projectile.angular_velocity = Vector3(randfn(20,20),randfn(20,5),randfn(20,5))
-	projectile.linear_velocity = -FireDirection.basis.z * ThrowVelocity + Main.player.get_real_velocity() + Vector3(0,4,0)
+	projectile.linear_velocity = -FireDirection.basis.z * ThrowVelocity + Main.player.get_real_velocity() #+ Vector3(0,4,0)
 	
 
 func _process(delta: float) -> void:

@@ -211,6 +211,12 @@ target_position = Vector3(0, -1.01, 0)
 
 [node name="Playerdamage" type="AudioStreamPlayer" parent="." unique_id=657362508]
 stream = ExtResource("14_k3dvv")
+volume_db = 0.555
+
+[node name="LUNGE" type="AudioStreamPlayer" parent="." unique_id=911556725]
+stream = ExtResource("13_go3yv")
+pitch_scale = 1.1
+bus = &"player"
 
 [editable path="Camera3D/Slash/sharp"]
 [editable path="Camera3D/Slash/sharp3"]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://epbc4ukdyb2k"]
+
+[ext_resource type="Script" uid="uid://wyhy3duunu7" path="res://scripts/punchGrunt.gd" id="1_dteyy"]
+[ext_resource type="AudioStream" uid="uid://bbosoc08ier1m" path="res://sound/sfx/ohhhhh-no.mp3" id="2_f2252"]
+[ext_resource type="PackedScene" uid="uid://bv47ga6o2wfpu" path="res://models/cat.glb" id="3_sib6e"]
+[ext_resource type="Texture2D" uid="uid://kgdb1etutgge" path="res://models/cat_Untitled.png" id="4_xu5cs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7rhm"]
+radius = 0.55
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vmx02"]
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmx02"]
+albedo_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muxxg"]
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("4_xu5cs")
+emission = Color(1, 1, 1, 1)
+texture_filter = 0
+billboard_keep_scale = true
+
+[node name="PUNCHER" type="CharacterBody3D" unique_id=1302825011]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_dteyy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1541659282]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1199149256]
+stream = ExtResource("2_f2252")
+
+[node name="looker" type="Node3D" parent="." unique_id=927501577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="looker" unique_id=1243524129]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
+
+[node name="cat" parent="." unique_id=1142433245 instance=ExtResource("3_sib6e")]
+transform = Transform3D(-0.165, 0, -2.491431e-08, 0, 0.165, 0, 2.491431e-08, 0, -0.165, 0, 0.6270822, 0)
+
+[node name="Sphere" parent="cat" index="0" unique_id=1205037432]
+surface_material_override/0 = SubResource("StandardMaterial3D_muxxg")
+
+[editable path="cat"]

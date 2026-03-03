@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://bf2vbqed3iema"]
+
+[ext_resource type="PackedScene" uid="uid://32euk40eo882" path="res://prefabs/meowless_sterling.tscn" id="1_0ra3k"]
+[ext_resource type="PackedScene" uid="uid://cce8yt034lp31" path="res://prefabs/revolver.tscn" id="2_cdatj"]
+[ext_resource type="PackedScene" uid="uid://b0gp1oagnu4c1" path="res://prefabs/shawty.tscn" id="3_un07w"]
+[ext_resource type="PackedScene" uid="uid://di2gucd7reutw" path="res://prefabs/dual-macs.tscn" id="4_t0jqh"]
+[ext_resource type="PackedScene" uid="uid://kljbajc463mc" path="res://prefabs/pipebomb.tscn" id="5_hj7jb"]
+[ext_resource type="AudioStream" uid="uid://ck38dcl8tyin1" path="res://sound/music/attack_of_the_murder_hornets.mp3" id="6_0ra3k"]
+[ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="7_8yqn4"]
+[ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="8_cdatj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
+noise_type = 2
+frequency = 0.7787
+offset = Vector3(0, -271.6, 0)
+fractal_type = 0
+fractal_octaves = 2
+fractal_lacunarity = 1.555
+fractal_gain = 0.14
+fractal_weighted_strength = 1.0
+cellular_jitter = 1.09
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t7rhm"]
+noise = SubResource("FastNoiseLite_to3d4")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_to3d4"]
+sky_top_color = Color(0.66399986, 0.52, 1, 1)
+sky_horizon_color = Color(0.71079123, 0.8284792, 0.9101225, 1)
+sky_curve = 0.22735734
+sky_cover = SubResource("NoiseTexture2D_t7rhm")
+sky_cover_modulate = Color(0.4810815, 0.75954086, 0.9546663, 1)
+ground_bottom_color = Color(0.5548229, 0.69404054, 0.6555659, 1)
+ground_curve = 0.12996037
+use_debanding = false
+energy_multiplier = 0.6
+
+[sub_resource type="Sky" id="Sky_t7rhm"]
+sky_material = SubResource("ProceduralSkyMaterial_to3d4")
+
+[sub_resource type="Environment" id="Environment_4adup"]
+background_mode = 2
+sky = SubResource("Sky_t7rhm")
+ambient_light_source = 3
+ssao_radius = 0.53
+ssao_intensity = 1.0
+glow_intensity = 1.0
+glow_bloom = 0.07
+fog_enabled = true
+fog_light_color = Color(0.138655, 0.247607, 0.37095588, 1)
+fog_density = 0.0358
+
+[sub_resource type="Compositor" id="Compositor_fudvv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w5m8u"]
+radius = 1.0
+
+[sub_resource type="Curve" id="Curve_fswsm"]
+_data = [Vector2(0.0067114085, 0.962708), 0.0, -2.600448, 0, 0, Vector2(1, 0), 0.013151532, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vmx02"]
+curve = SubResource("Curve_fswsm")
+
+[sub_resource type="Gradient" id="Gradient_muxxg"]
+offsets = PackedFloat32Array(0, 0.97540987)
+colors = PackedColorArray(0.14999998, 1, 0, 1, 0, 1, 0.5333333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5lo0n"]
+gradient = SubResource("Gradient_muxxg")
+
+[sub_resource type="Curve" id="Curve_pxrhj"]
+_limits = [0.0, 1.3, 0.0, 1.0]
+_data = [Vector2(0, 1.2127366), 0.0, 0.0, 0, 0, Vector2(1, 1.3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t2qnd"]
+curve = SubResource("Curve_pxrhj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u06m6"]
+direction = Vector3(0, 1, 0)
+spread = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_t2qnd")
+color_ramp = SubResource("GradientTexture1D_5lo0n")
+alpha_curve = SubResource("CurveTexture_vmx02")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5m8u"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_fswsm"]
+material = SubResource("StandardMaterial3D_w5m8u")
+inner_radius = 0.949
+outer_radius = 1.1
+rings = 6
+ring_segments = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fswsm"]
+transparency = 1
+blend_mode = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.25882354)
+
+[sub_resource type="TorusMesh" id="TorusMesh_vmx02"]
+material = SubResource("StandardMaterial3D_fswsm")
+rings = 8
+ring_segments = 6
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ra3k"]
+size = Vector3(16, 0.5, 32)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_un07w"]
+albedo_texture = ExtResource("8_cdatj")
+uv1_scale = Vector3(48, 64, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cdatj"]
+material = SubResource("StandardMaterial3D_un07w")
+size = Vector3(16, 0.5, 32)
+
+[node name="Node3D" type="Node3D" unique_id=948481011]
+
+[node name="Meowless Sterling" parent="." unique_id=567047819 instance=ExtResource("1_0ra3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8944067, 13.248498)
+GUNS = Array[PackedScene]([ExtResource("2_cdatj"), ExtResource("3_un07w"), ExtResource("4_t0jqh"), ExtResource("5_hj7jb")])
+assert_Guns = true
+MAX_HEALTH = null
+Health = null
+MOUSE_SENS = null
+JUMP_COOLDOWN = null
+SLIDE_DASH_SPEED_MULTIPLIER = null
+MAX_FALL_SPEED = null
+STRIDE = null
+STRIDE_SPEED = null
+MAX_AIR_SCRATCHES = null
+SCRATCH_COOLDOWN = null
+SCRATCH_DAMAGE = null
+isDead = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033836403]
+environment = SubResource("Environment_4adup")
+compositor = SubResource("Compositor_fudvv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1840727974]
+transform = Transform3D(0.86062837, -0.10157245, 0.49900103, -0.32170382, 0.6511565, 0.68738765, -0.39474738, -0.75211614, 0.5277274, 4.7683716e-07, 2.6596005, 1.0370378)
+light_color = Color(0.90999997, 0.9715, 1, 1)
+light_energy = 0.326
+light_indirect_energy = 2.415
+light_volumetric_fog_energy = 0.0
+light_specular = 6.861
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2048353895]
+stream = ExtResource("6_0ra3k")
+autoplay = true
+parameters/looping = true
+
+[node name="Goal" type="Area3D" parent="." unique_id=534796107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("7_8yqn4")
+whereTo = ExtResource("1_0ra3k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal" unique_id=1934341071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_w5m8u")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Goal" unique_id=1800399094]
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_u06m6")
+draw_passes = 2
+draw_pass_1 = SubResource("TorusMesh_fswsm")
+draw_pass_2 = SubResource("TorusMesh_vmx02")
+
+[node name="env" type="Node3D" parent="." unique_id=1193657056]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="env" unique_id=1285375272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D" unique_id=1893196759]
+shape = SubResource("BoxShape3D_0ra3k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env/StaticBody3D" unique_id=1444576592]
+mesh = SubResource("BoxMesh_cdatj")

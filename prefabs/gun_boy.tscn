@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://d1pfw3a452w07"]
+
+[ext_resource type="Script" uid="uid://bbydyrq3aalsu" path="res://scripts/bulletGrunt.gd" id="1_8g6n2"]
+[ext_resource type="AudioStream" uid="uid://bbosoc08ier1m" path="res://sound/sfx/ohhhhh-no.mp3" id="2_4lx3k"]
+[ext_resource type="AudioStream" uid="uid://dsrs0nqrclbqx" path="res://sound/sfx/crunchygunshot.ogg" id="3_rnend"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7rhm"]
+radius = 0.55
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4adup"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wu6cg"]
+albedo_color = Color(1, 0.03529412, 1, 1)
+rim = 0.27
+rim_tint = 0.52
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vmx02"]
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmx02"]
+albedo_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+
+[node name="gun boy" type="CharacterBody3D" unique_id=2101438899]
+script = ExtResource("1_8g6n2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=894573609]
+shape = SubResource("CapsuleShape3D_t7rhm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=973641676]
+mesh = SubResource("CapsuleMesh_4adup")
+surface_material_override/0 = SubResource("StandardMaterial3D_wu6cg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1069682449]
+stream = ExtResource("2_4lx3k")
+
+[node name="gunshot" type="AudioStreamPlayer3D" parent="." unique_id=194395087]
+stream = ExtResource("3_rnend")
+
+[node name="looker" type="Node3D" parent="." unique_id=660896662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="looker" unique_id=1496841424]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
+mesh = SubResource("CylinderMesh_vmx02")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")

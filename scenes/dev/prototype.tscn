@@ -8,15 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://w3ogjasqrdym" path="res://prefabs/explosion.tscn" id="4_v3j7y"]
 [ext_resource type="PackedScene" uid="uid://kljbajc463mc" path="res://prefabs/pipebomb.tscn" id="5_ar4hd"]
 [ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="5_m681r"]
-[ext_resource type="AudioStream" uid="uid://dsrs0nqrclbqx" path="res://sound/sfx/crunchygunshot.ogg" id="5_w5m8u"]
 [ext_resource type="Texture2D" uid="uid://2jlvb1rbfgtr" path="res://Textures/bldg098M.jpg" id="7_t7rhm"]
 [ext_resource type="AudioStream" uid="uid://dvh2aabwdv6bm" path="res://sound/music/BRABBA.mp3" id="13_wu6cg"]
-[ext_resource type="AudioStream" uid="uid://bbosoc08ier1m" path="res://sound/sfx/ohhhhh-no.mp3" id="14_muxxg"]
-[ext_resource type="Script" uid="uid://wyhy3duunu7" path="res://scripts/punchGrunt.gd" id="15_fswsm"]
+[ext_resource type="PackedScene" uid="uid://d1pfw3a452w07" path="res://prefabs/gun_boy.tscn" id="15_5lo0n"]
 [ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="15_vmx02"]
-[ext_resource type="Script" uid="uid://bbydyrq3aalsu" path="res://scripts/bulletGrunt.gd" id="16_be1oa"]
-[ext_resource type="PackedScene" uid="uid://bv47ga6o2wfpu" path="res://models/cat.glb" id="16_vmx02"]
-[ext_resource type="Texture2D" uid="uid://kgdb1etutgge" path="res://models/cat_Untitled.png" id="18_5lo0n"]
+[ext_resource type="PackedScene" uid="uid://epbc4ukdyb2k" path="res://prefabs/puncher.tscn" id="16_pxrhj"]
 [ext_resource type="Texture2D" uid="uid://dqeto562vdtus" path="res://Textures/Screenshot 2025-03-01 120220.png" id="20_t2qnd"]
 [ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="21_u06m6"]
 [ext_resource type="PackedScene" uid="uid://da4hti50qhxcp" path="res://prefabs/nade.tscn" id="22_kwxqj"]
@@ -110,32 +106,6 @@ albedo_texture = ExtResource("22_q4fe8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_be1oa"]
 albedo_texture = ExtResource("23_kwxqj")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7rhm"]
-radius = 0.55
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4adup"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wu6cg"]
-albedo_color = Color(1, 0.03529412, 1, 1)
-rim = 0.27
-rim_tint = 0.52
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_vmx02"]
-top_radius = 0.1
-bottom_radius = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmx02"]
-albedo_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muxxg"]
-shading_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_texture = ExtResource("18_5lo0n")
-emission = Color(1, 1, 1, 1)
-texture_filter = 0
-billboard_keep_scale = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_w5m8u"]
 radius = 1.0
@@ -509,58 +479,16 @@ font_size = 118
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2048353895]
 stream = ExtResource("13_wu6cg")
+volume_db = -20.07
 pitch_scale = 1.2
 autoplay = true
 parameters/looping = true
 
-[node name="gun boy" type="CharacterBody3D" parent="." unique_id=1593619125]
+[node name="gun boy" parent="." unique_id=2101438899 instance=ExtResource("15_5lo0n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.659765, 4.7683716e-07, -2.5656166)
-script = ExtResource("16_be1oa")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="gun boy" unique_id=1856658044]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="gun boy" unique_id=974925229]
-mesh = SubResource("CapsuleMesh_4adup")
-surface_material_override/0 = SubResource("StandardMaterial3D_wu6cg")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="gun boy" unique_id=1365441282]
-stream = ExtResource("14_muxxg")
-
-[node name="gunshot" type="AudioStreamPlayer3D" parent="gun boy" unique_id=649420476]
-stream = ExtResource("5_w5m8u")
-
-[node name="looker" type="Node3D" parent="gun boy" unique_id=1318168001]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="gun boy/looker" unique_id=1023448944]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="PUNCHER" type="CharacterBody3D" parent="." unique_id=1351801762]
+[node name="PUNCHER" parent="." unique_id=1302825011 instance=ExtResource("16_pxrhj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4664307, -1.4212779, -4.865821)
-script = ExtResource("15_fswsm")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PUNCHER" unique_id=1020047795]
-shape = SubResource("CapsuleShape3D_t7rhm")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PUNCHER" unique_id=734858962]
-stream = ExtResource("14_muxxg")
-
-[node name="looker" type="Node3D" parent="PUNCHER" unique_id=1464622149]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41057736, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PUNCHER/looker" unique_id=1312101881]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.8161686)
-mesh = SubResource("CylinderMesh_vmx02")
-surface_material_override/0 = SubResource("StandardMaterial3D_vmx02")
-
-[node name="cat" parent="PUNCHER" unique_id=1142433245 instance=ExtResource("16_vmx02")]
-transform = Transform3D(-0.165, 0, -2.491431e-08, 0, 0.165, 0, 2.491431e-08, 0, -0.165, 0, 0.6270822, 0)
-
-[node name="Sphere" parent="PUNCHER/cat" index="0" unique_id=1205037432]
-surface_material_override/0 = SubResource("StandardMaterial3D_muxxg")
 
 [node name="Goal" type="Area3D" parent="." unique_id=534796107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.475292, 1.7927897, 62.30677)
@@ -581,5 +509,3 @@ draw_pass_2 = SubResource("TorusMesh_vmx02")
 [node name="nade" parent="." unique_id=1362883402 instance=ExtResource("22_kwxqj")]
 transform = Transform3D(0.9932802, 0.115734644, 0, -0.115734644, 0.9932802, 0, 0, 0, 1, -5.55387, 0, -1.8781238)
 fuseTime = 88.0
-
-[editable path="PUNCHER/cat"]
