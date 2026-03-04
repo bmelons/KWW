@@ -51,14 +51,14 @@ func explosionKnockback():
 			continue
 		hit.set(property, hit.get(property) + dirTo*KNOCKBACK )
 		
-func explode():
+func explode(radius_modifier=1):
 	#check again
 	if debounce: return; 
 	debounce = true
 	## TODO: this code gets used a lot, consolidate it somewhere soon
 	var beeb = explosion.instantiate()
 	get_tree().root.add_child(beeb)
-	beeb.sc = Vector3.ONE*(radius*5)
+	beeb.sc = Vector3.ONE*(radius*5 * radius_modifier) 
 	beeb.global_position = global_position
 	explosiondamage()
 	explosionKnockback()
@@ -68,4 +68,4 @@ func _impact(dmg):
 	if get_stack().size() > 10: ## TODO: make a better fix for explosion infinity bug
 		print("max stack size reached, halting")
 		return
-	explode()
+	explode(clampi(dmg,2,3))

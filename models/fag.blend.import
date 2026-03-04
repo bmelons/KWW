@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cpc56qep55k8k"
-path="res://.godot/imported/fag.blend-d0625b36a71736e82b8be6d6cc7aa943.scn"
+valid=false
 
 [deps]
 
 source_file="res://models/fag.blend"
-dest_files=["res://.godot/imported/fag.blend-d0625b36a71736e82b8be6d6cc7aa943.scn"]
 
 [params]
 

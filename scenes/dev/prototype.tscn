@@ -56,7 +56,7 @@ ssao_intensity = 1.0
 glow_intensity = 1.0
 glow_bloom = 0.07
 fog_enabled = true
-fog_light_color = Color(0.138655, 0.247607, 0.37095588, 1)
+fog_light_color = Color(0.4453, 0.57816005, 0.73, 1)
 fog_density = 0.0358
 
 [sub_resource type="Compositor" id="Compositor_fudvv"]
@@ -172,18 +172,6 @@ ring_segments = 6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.67421424, 15.010633)
 GUNS = Array[PackedScene]([ExtResource("2_q4fe8"), ExtResource("3_kwxqj"), ExtResource("4_be1oa"), ExtResource("5_ar4hd")])
 assert_Guns = true
-MAX_HEALTH = null
-Health = null
-MOUSE_SENS = null
-JUMP_COOLDOWN = null
-SLIDE_DASH_SPEED_MULTIPLIER = null
-MAX_FALL_SPEED = null
-STRIDE = null
-STRIDE_SPEED = null
-MAX_AIR_SCRATCHES = null
-SCRATCH_COOLDOWN = null
-SCRATCH_DAMAGE = null
-isDead = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033836403]
 environment = SubResource("Environment_4adup")

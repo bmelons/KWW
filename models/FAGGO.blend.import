@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://tduwg0a2s675"
-path="res://.godot/imported/FAGGO.blend-351122a8867ac50f0f5fec85fa7a5714.scn"
+valid=false
 
 [deps]
 
 source_file="res://models/FAGGO.blend"
-dest_files=["res://.godot/imported/FAGGO.blend-351122a8867ac50f0f5fec85fa7a5714.scn"]
 
 [params]
 

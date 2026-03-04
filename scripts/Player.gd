@@ -51,12 +51,19 @@ var scratchBuffer = []
 @export var slashMaterial : Material
 @onready var icon = $Camera3D/Node2D/Icon
 @onready var rh = $Camera3D/hands/RightHand
+@onready var mfr = $Camera3D/hands/RightHand/flash
+@onready var mfl = $Camera3D/hands/LeftHand/flash2
 @onready var lh = $Camera3D/hands/LeftHand
 @onready var ah = $Camera3D/hands/AltHand
 @onready var bulletpoint = $Camera3D/bulletPoint
 @onready var bulletpoint2 = $Camera3D/bulletPoint2
 @onready var hpBar = $Camera3D/ProgressBar
 
+
+func muzzleflash_right():
+	mfr.modulate = Color(1,1,1,.8)
+func muzzleflash_left():
+	mfl.modulate = Color(1,1,1,.8)	
 
 func set_hp(to):
 	Health = to
@@ -220,7 +227,12 @@ func _impact(dmg):
 
 	Health -= dmg
 
+func muzzle_dissolve():
+	mfr.modulate = mfr.modulate.lerp(Color(1,1,1,0),.6)
+	mfl.modulate = mfl.modulate.lerp(Color(1,1,1,0),.6)
+
 func _process(delta: float) -> void:
+	muzzle_dissolve()
 	update_ui()
 	if isDead:
 		get_tree().reload_current_scene()

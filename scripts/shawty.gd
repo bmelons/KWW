@@ -53,9 +53,11 @@ func angleGenerator() -> Vector2:
 	var angles = Vector2(cos(rot),sin(rot)) * deg_to_rad(maxSpreadAngle) * spread
 	return angles
 func Fire():
+	
 	var angle = angleGenerator()
 	HitscanRay.rotation = Vector3(angle.x,angle.y,0)
 	$gunshot.play()
+	Main.player.muzzleflash_right()
 	var FireDirection = HitscanRay.global_transform
 	var space_state = get_world_3d().direct_space_state
 	var end = HitscanRay.global_transform * Transform3D(Basis.IDENTITY,HitscanRay.target_position)

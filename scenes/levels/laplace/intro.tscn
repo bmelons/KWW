@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://kljbajc463mc" path="res://prefabs/pipebomb.tscn" id="5_6gx3j"]
 [ext_resource type="AudioStream" uid="uid://dvu1gx5g5mxjc" path="res://sound/music/wellnesscheck.mp3" id="6_0a66a"]
 [ext_resource type="Texture2D" uid="uid://dqvgd5nhnobrg" path="res://Textures/env/club_laplace/door.png" id="8_2qgfu"]
+[ext_resource type="Script" uid="uid://ci1qvnknn5we2" path="res://scripts/slidingdoor.gd" id="8_688kh"]
 [ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="21_r25ql"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
@@ -207,7 +208,11 @@ mesh = SubResource("BoxMesh_2qgfu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="env" unique_id=1253702418]
 
-[node name="rotdoor" type="Area3D" parent="." unique_id=1374767032]
+[node name="rotdoor" type="Area3D" parent="." unique_id=1374767032 node_paths=PackedStringArray("Hinge", "OpenNoise")]
+script = ExtResource("8_688kh")
+Hinge = NodePath("hinge")
+OpenNoise = NodePath("AudioStreamPlayer3D")
+OPEN_TIME = 1.0
 
 [node name="hinge" type="Node3D" parent="rotdoor" unique_id=1031685208]
 

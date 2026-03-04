@@ -70,6 +70,10 @@ func _add_fire():
 
 func Fire():
 	_add_fire()
+	if beamorigin != Main.player.bulletpoint:
+		Main.player.muzzleflash_left()
+	else:
+		Main.player.muzzleflash_right()
 	$gunshot.play()
 	var FireDirection = Camera.global_transform
 	if not HitscanRay.is_colliding():
