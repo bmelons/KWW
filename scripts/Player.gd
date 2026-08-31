@@ -57,7 +57,7 @@ var scratchBuffer = []
 @onready var ah = $Camera3D/hands/AltHand
 @onready var bulletpoint = $Camera3D/bulletPoint
 @onready var bulletpoint2 = $Camera3D/bulletPoint2
-@onready var hpBar = $Camera3D/ProgressBar
+@onready var hpBar = $Camera3D/Node2D2/ProgressBar
 
 
 func muzzleflash_right():

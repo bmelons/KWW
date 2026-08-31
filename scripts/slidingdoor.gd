@@ -18,7 +18,9 @@ func open():
 	if Locked:
 		return
 	Locked=true
+	
 	print("OPEN")
+	$hinge/collider/CollisionShape3D.disabled = true
 	var t = get_tree().create_tween()
 	t.set_parallel(true)
 	t.tween_property(Hinge,'position',Hinge.rotation+POSITION_OFFSET,OPEN_TIME)

@@ -6,4 +6,5 @@ func _ready() -> void:
 	$Button.pressed.connect(passage)
 	
 func passage():
+	print(Main.nextScene)
 	get_tree().change_scene_to_packed(Main.nextScene)

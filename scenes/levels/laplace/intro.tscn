@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dvu1gx5g5mxjc" path="res://sound/music/wellnesscheck.mp3" id="6_0a66a"]
 [ext_resource type="Texture2D" uid="uid://dqvgd5nhnobrg" path="res://Textures/env/club_laplace/door.png" id="8_2qgfu"]
 [ext_resource type="Script" uid="uid://ci1qvnknn5we2" path="res://scripts/slidingdoor.gd" id="8_688kh"]
+[ext_resource type="Texture2D" uid="uid://bq4xot7y1l4ga" path="res://Textures/env/club_laplace/floor.png" id="8_nb5wm"]
 [ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="21_r25ql"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
@@ -125,6 +126,17 @@ uv1_scale = Vector3(48, 64, 1)
 material = SubResource("StandardMaterial3D_0a66a")
 size = Vector3(16, 0.5, 32)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k7yd"]
+albedo_texture = ExtResource("8_nb5wm")
+uv1_scale = Vector3(30, 20, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uunrp"]
+material = SubResource("StandardMaterial3D_8k7yd")
+size = Vector3(15, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3a6u"]
+size = Vector3(15, 14.210449, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykf8h"]
 size = Vector3(2, 2, 0.1)
 
@@ -137,7 +149,7 @@ material = SubResource("StandardMaterial3D_688kh")
 size = Vector3(2, 2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0a66a"]
-size = Vector3(1.7410889, 1.8516846, 2.2028503)
+size = Vector3(1.996, 1.977, 2.203)
 
 [node name="Node3D" type="Node3D" unique_id=948481011]
 
@@ -206,24 +218,52 @@ shape = SubResource("BoxShape3D_0ra3k")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="env/fluer" unique_id=1444576592]
 mesh = SubResource("BoxMesh_2qgfu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="env" unique_id=1253702418]
+[node name="StaticBody3D" type="StaticBody3D" parent="env" unique_id=1640447614]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.484888, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env/StaticBody3D" unique_id=1438842172]
+mesh = SubResource("BoxMesh_uunrp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D" unique_id=1425150466]
+shape = SubResource("BoxShape3D_h3a6u")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="env" unique_id=1629800093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.519337, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env/StaticBody3D2" unique_id=1670343646]
+mesh = SubResource("BoxMesh_uunrp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D2" unique_id=1273365713]
+shape = SubResource("BoxShape3D_h3a6u")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="env" unique_id=2104151419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65609646, 9.455319, -0.011811733)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env/StaticBody3D3" unique_id=1822401794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7019987, 0)
+mesh = SubResource("BoxMesh_uunrp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D3" unique_id=577825619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3947754, 0)
+shape = SubResource("BoxShape3D_h3a6u")
 
 [node name="rotdoor" type="Area3D" parent="." unique_id=1374767032 node_paths=PackedStringArray("Hinge", "OpenNoise")]
+transform = Transform3D(1, 0, 0, 0, 1.31, 0, 0, 0, 1, -0.012299538, 0, 0.15914536)
 script = ExtResource("8_688kh")
 Hinge = NodePath("hinge")
 OpenNoise = NodePath("AudioStreamPlayer3D")
-OPEN_TIME = 1.0
+POSITION_OFFSET = Vector3(-2, 0, 0)
 
 [node name="hinge" type="Node3D" parent="rotdoor" unique_id=1031685208]
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="rotdoor/hinge" unique_id=1780529383]
+[node name="collider" type="StaticBody3D" parent="rotdoor/hinge" unique_id=1628567400]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rotdoor/hinge/AnimatableBody3D" unique_id=1003693374]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rotdoor/hinge/collider" unique_id=1003693374]
 shape = SubResource("BoxShape3D_ykf8h")
 debug_color = Color(0.9394695, 6.4495207e-06, 0.59603524, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rotdoor/hinge/AnimatableBody3D" unique_id=1904472853]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rotdoor/hinge/collider" unique_id=1904472853]
 mesh = SubResource("BoxMesh_nb5wm")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="rotdoor" unique_id=1911243753]

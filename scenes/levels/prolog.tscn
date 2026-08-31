@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cr16wn4y525xl" path="res://Textures/cobble_stoke.png" id="4_5nih6"]
 [ext_resource type="Texture2D" uid="uid://c5cna0c5r8752" path="res://Textures/oh boy.png" id="6_l8fcb"]
 [ext_resource type="FontFile" uid="uid://d14iu213uqbfv" path="res://data/Palatino Linotype.ttf" id="7_0jjfi"]
+[ext_resource type="PackedScene" uid="uid://1s7jwyerunop" path="res://scenes/levels/laplace/intro.tscn" id="7_8gqm2"]
 [ext_resource type="AudioStream" uid="uid://dvh2aabwdv6bm" path="res://sound/music/BRABBA.mp3" id="10_6p4xn"]
 [ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="17_glu4l"]
 
@@ -267,7 +268,7 @@ parameters/looping = true
 [node name="f" type="Area3D" parent="." unique_id=534796107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, -2.4199257, 24)
 script = ExtResource("17_glu4l")
-whereTo = ExtResource("1_jvtda")
+whereTo = ExtResource("7_8gqm2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="f" unique_id=1934341071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

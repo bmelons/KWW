@@ -35,9 +35,6 @@ shader_parameter/blockiness = 600.0
 shader_parameter/color_steps = 13.2630002499925
 shader_parameter/grain_amount = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7rhm"]
-bg_color = Color(0.15844831, 0.71, 0.14909998, 1)
-
 [sub_resource type="Gradient" id="Gradient_4adup"]
 offsets = PackedFloat32Array(0.018072288, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -59,6 +56,9 @@ height = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwxqj"]
 size = Vector3(1.285669, 1.01, 2.1136096)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7rhm"]
+bg_color = Color(0.15844831, 0.71, 0.14909998, 1)
 
 [node name="Meowless Sterling" type="CharacterBody3D" unique_id=567047819 node_paths=PackedStringArray("Hands", "SlashArea")]
 axis_lock_angular_x = true
@@ -136,25 +136,6 @@ offset_right = 1284.0
 offset_bottom = 725.0
 mouse_filter = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Camera3D" unique_id=101423472]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -90.0
-offset_right = 250.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "halt"
-mouse_filter = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_t7rhm")
-value = 50.0
-rounded = true
-
 [node name="hair" type="Node2D" parent="Camera3D" unique_id=1379707596]
 
 [node name="dropcrpsshair2" type="Sprite2D" parent="Camera3D/hair" unique_id=1736681391]
@@ -198,21 +179,21 @@ transform = Transform3D(0.90301144, -0.18207905, -0.35021153, 0.19765733, 0.9802
 [node name="sharp" parent="Camera3D/Slash" unique_id=319123395 instance=ExtResource("12_jd7hh")]
 transform = Transform3D(0.82609826, 0.5635261, 0, -0.5635261, 0.82609826, 0, 0, 0, 1, -0.565, -0.255, -1.245)
 
-[node name="NurbsPath" parent="Camera3D/Slash/sharp" index="0" unique_id=1670556415]
+[node name="NurbsPath" parent="Camera3D/Slash/sharp" index="0" unique_id=2039198435]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("7_3mo3g")
 
 [node name="sharp3" parent="Camera3D/Slash" unique_id=1334983637 instance=ExtResource("12_jd7hh")]
 transform = Transform3D(0.54317445, -0.8396199, 0, 0.8396199, 0.54317445, 0, 0, 0, 1, -0.415, -0.41, -1.5)
 
-[node name="NurbsPath" parent="Camera3D/Slash/sharp3" index="0" unique_id=1670556415]
+[node name="NurbsPath" parent="Camera3D/Slash/sharp3" index="0" unique_id=2039198435]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("7_3mo3g")
 
 [node name="sharp2" parent="Camera3D/Slash" unique_id=2024729080 instance=ExtResource("12_jd7hh")]
 transform = Transform3D(0.36487675, 0.93105584, 0, -0.93105584, 0.36487675, 0, 0, 0, 1, -0.485, 0.04, -1.185)
 
-[node name="NurbsPath" parent="Camera3D/Slash/sharp2" index="0" unique_id=1670556415]
+[node name="NurbsPath" parent="Camera3D/Slash/sharp2" index="0" unique_id=2039198435]
 transform = Transform3D(-8.52372e-09, 0, 0.195, 0, 0.195, 0, -0.195, 0, -8.52372e-09, 0, 0, 0)
 surface_material_override/0 = ExtResource("7_3mo3g")
 
@@ -230,6 +211,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20423487, -0.10353875, -0.2
 
 [node name="bulletPoint2" type="Node3D" parent="Camera3D" unique_id=1747713424]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22411847, -0.104, -0.23700047)
+
+[node name="Node2D2" type="Node2D" parent="Camera3D" unique_id=1545187101]
+position = Vector2(640, 634)
+scale = Vector2(1, 1.64)
+skew = 0.49392816
+
+[node name="ProgressBar" type="ProgressBar" parent="Camera3D/Node2D2" unique_id=101423472]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -27.0
+offset_right = 250.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "halt"
+mouse_filter = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 37
+theme_override_styles/fill = SubResource("StyleBoxFlat_t7rhm")
+value = 50.0
+rounded = true
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=62331592]
 target_position = Vector3(0, -1.01, 0)
