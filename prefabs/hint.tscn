@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bf133hmsjgfj1"]
+
+[ext_resource type="Script" uid="uid://cgrtuc5igk6ua" path="res://scripts/hint.gd" id="1_1p4fd"]
+[ext_resource type="Texture2D" uid="uid://br47il1n81abc" path="res://Textures/title/hint.png" id="1_bp2aj"]
+[ext_resource type="FontFile" uid="uid://iou405w1a2au" path="res://Coolvetica Rg.otf" id="2_1p4fd"]
+
+[node name="hint" type="PanelContainer" unique_id=1862473911]
+offset_right = 237.0
+offset_bottom = 51.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("1_1p4fd")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1948965430]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1802949930]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=943145684]
+layout_mode = 2
+texture = ExtResource("1_bp2aj")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1590751941]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1p4fd")
+theme_override_font_sizes/font_size = 28
+text = "poop in but hole"
+vertical_alignment = 1

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cy0wl5sg5euju"]
+
+[ext_resource type="Texture2D" uid="uid://bq4xot7y1l4ga" path="res://Textures/env/club_laplace/floor.png" id="1_3d06s"]
+
+[resource]
+albedo_texture = ExtResource("1_3d06s")
+uv1_triplanar = true

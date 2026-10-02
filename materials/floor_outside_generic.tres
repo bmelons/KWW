@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dtihow5wksvue"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykf8h"]
+load_path = "res://.godot/imported/cobble_stoke.png-49d0d92932e66d0fe09c4d69d52dec96.s3tc.ctex"
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_ykf8h")
+uv1_triplanar = true

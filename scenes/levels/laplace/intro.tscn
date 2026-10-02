@@ -7,8 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://kljbajc463mc" path="res://prefabs/pipebomb.tscn" id="5_6gx3j"]
 [ext_resource type="AudioStream" uid="uid://dvu1gx5g5mxjc" path="res://sound/music/wellnesscheck.mp3" id="6_0a66a"]
 [ext_resource type="Texture2D" uid="uid://dqvgd5nhnobrg" path="res://Textures/env/club_laplace/door.png" id="8_2qgfu"]
+[ext_resource type="PackedScene" uid="uid://capy1o4bi846g" path="res://scenes/dev/prototype.tscn" id="8_8k7yd"]
 [ext_resource type="Script" uid="uid://ci1qvnknn5we2" path="res://scripts/slidingdoor.gd" id="8_688kh"]
-[ext_resource type="Texture2D" uid="uid://bq4xot7y1l4ga" path="res://Textures/env/club_laplace/floor.png" id="8_nb5wm"]
+[ext_resource type="Material" uid="uid://dtihow5wksvue" path="res://materials/floor_outside_generic.tres" id="9_pn1jr"]
+[ext_resource type="PackedScene" uid="uid://d12dn455pntwb" path="res://prefabs/box.tscn" id="10_8k7yd"]
+[ext_resource type="Material" uid="uid://cy0wl5sg5euju" path="res://materials/wall_generic.tres" id="10_pn1jr"]
+[ext_resource type="Script" uid="uid://8u4c4k2blcd4" path="res://scripts/key.gd" id="11_h3a6u"]
+[ext_resource type="Texture2D" uid="uid://d3uf58ahve1x6" path="res://Textures/Untitled.png" id="11_uunrp"]
 [ext_resource type="Script" uid="uid://bxy8e0f78imrc" path="res://scripts/goal.gd" id="21_r25ql"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_to3d4"]
@@ -115,27 +120,35 @@ ring_segments = 6
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ra3k"]
 size = Vector3(16, 0.5, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykf8h"]
-load_path = "res://.godot/imported/cobble_stoke.png-49d0d92932e66d0fe09c4d69d52dec96.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0a66a"]
-albedo_texture = SubResource("CompressedTexture2D_ykf8h")
-uv1_scale = Vector3(48, 64, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_2qgfu"]
-material = SubResource("StandardMaterial3D_0a66a")
+material = ExtResource("9_pn1jr")
 size = Vector3(16, 0.5, 32)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k7yd"]
-albedo_texture = ExtResource("8_nb5wm")
-uv1_scale = Vector3(30, 20, 10)
-
 [sub_resource type="BoxMesh" id="BoxMesh_uunrp"]
-material = SubResource("StandardMaterial3D_8k7yd")
+material = ExtResource("10_pn1jr")
 size = Vector3(15, 15, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h3a6u"]
 size = Vector3(15, 14.210449, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3a6u"]
+albedo_texture = ExtResource("11_uunrp")
+metallic_specular = 0.0
+billboard_mode = 1
+grow_amount = -0.61
+
+[sub_resource type="QuadMesh" id="QuadMesh_gg68s"]
+material = SubResource("StandardMaterial3D_h3a6u")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uunrp"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykf8h"]
+load_path = "res://.godot/imported/cobble_stoke.png-49d0d92932e66d0fe09c4d69d52dec96.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn1jr"]
+albedo_color = Color(0.65, 0.2275, 0.2275, 1)
+albedo_texture = SubResource("CompressedTexture2D_ykf8h")
+uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykf8h"]
 size = Vector3(2, 2, 0.1)
@@ -157,18 +170,6 @@ size = Vector3(1.996, 1.977, 2.203)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8944067, 13.248498)
 GUNS = Array[PackedScene]([ExtResource("2_sdt3s"), ExtResource("3_nnlav"), ExtResource("4_ylcb8"), ExtResource("5_6gx3j")])
 assert_Guns = true
-MAX_HEALTH = null
-Health = null
-MOUSE_SENS = null
-JUMP_COOLDOWN = null
-SLIDE_DASH_SPEED_MULTIPLIER = null
-MAX_FALL_SPEED = null
-STRIDE = null
-STRIDE_SPEED = null
-MAX_AIR_SCRATCHES = null
-SCRATCH_COOLDOWN = null
-SCRATCH_DAMAGE = null
-isDead = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033836403]
 environment = SubResource("Environment_4adup")
@@ -194,7 +195,7 @@ parameters/looping = true
 [node name="Goal" type="Area3D" parent="." unique_id=534796107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("21_r25ql")
-whereTo = ExtResource("1_fuxby")
+whereTo = ExtResource("8_8k7yd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Goal" unique_id=1934341071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -247,23 +248,83 @@ mesh = SubResource("BoxMesh_uunrp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3947754, 0)
 shape = SubResource("BoxShape3D_h3a6u")
 
+[node name="Box2" parent="env" unique_id=1239594905 instance=ExtResource("10_8k7yd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.6663113, 0.57479763, 3.037022)
+
+[node name="Box3" parent="env" unique_id=634436192 instance=ExtResource("10_8k7yd")]
+transform = Transform3D(-0.38801628, 0, 0.92165256, 0, 1, 0, -0.92165256, 0, -0.38801628, -4.3850136, 0.57479763, 3.037022)
+
+[node name="Box4" parent="env" unique_id=2050532850 instance=ExtResource("10_8k7yd")]
+transform = Transform3D(-0.38801628, 0, 0.92165256, 0, 1, 0, -0.92165256, 0, -0.38801628, -4.8517685, 1.7116785, 3.0073264)
+
+[node name="door unlocker 3000" type="Area3D" parent="env" unique_id=1848318257 node_paths=PackedStringArray("associatedDoor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.040134, 0.62315273, 15.720728)
+script = ExtResource("11_h3a6u")
+associatedDoor = NodePath("../../rotdoor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env/door unlocker 3000" unique_id=1968650785]
+mesh = SubResource("QuadMesh_gg68s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/door unlocker 3000" unique_id=100873476]
+shape = SubResource("SphereShape3D_uunrp")
+
+[node name="walls" type="CSGCombiner3D" parent="env" unique_id=2024534621]
+use_collision = true
+
+[node name="fence" type="CSGBox3D" parent="env/walls" unique_id=1851496653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1, 17.5)
+size = Vector3(23, 3, 1)
+material = SubResource("StandardMaterial3D_pn1jr")
+
+[node name="fence3" type="CSGBox3D" parent="env/walls" unique_id=1223969374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1, -1.5)
+size = Vector3(23, 3, 1)
+material = SubResource("StandardMaterial3D_pn1jr")
+
+[node name="fence2" type="CSGBox3D" parent="env/walls" unique_id=1011689006]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24.5, 1, 5.5)
+size = Vector3(23, 3, 1)
+material = SubResource("StandardMaterial3D_pn1jr")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="env/walls" unique_id=1667395815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5.75, 17)
+size = Vector3(8, 12, 8)
+material = ExtResource("10_pn1jr")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="env/walls" unique_id=1862936026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 5.75, 16)
+size = Vector3(6, 12, 6)
+material = ExtResource("10_pn1jr")
+
+[node name="floor" type="CSGCombiner3D" parent="env" unique_id=1151185883]
+use_collision = true
+
+[node name="fluer" type="CSGBox3D" parent="env/floor" unique_id=75908729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.25, 13)
+size = Vector3(24, 0.5, 32)
+material = ExtResource("9_pn1jr")
+
 [node name="rotdoor" type="Area3D" parent="." unique_id=1374767032 node_paths=PackedStringArray("Hinge", "OpenNoise")]
 transform = Transform3D(1, 0, 0, 0, 1.31, 0, 0, 0, 1, -0.012299538, 0, 0.15914536)
 script = ExtResource("8_688kh")
 Hinge = NodePath("hinge")
 OpenNoise = NodePath("AudioStreamPlayer3D")
-POSITION_OFFSET = Vector3(-2, 0, 0)
+POSITION_OFFSET = Vector3(0, 0, 0)
+ROT_OFFSET = Vector3(1.57, 0, 0)
+Locked = true
 
 [node name="hinge" type="Node3D" parent="rotdoor" unique_id=1031685208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.048935, 0)
 
-[node name="collider" type="StaticBody3D" parent="rotdoor/hinge" unique_id=1628567400]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="collider" type="AnimatableBody3D" parent="rotdoor/hinge" unique_id=1679398743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0356779, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rotdoor/hinge/collider" unique_id=1003693374]
 shape = SubResource("BoxShape3D_ykf8h")
 debug_color = Color(0.9394695, 6.4495207e-06, 0.59603524, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rotdoor/hinge/collider" unique_id=1904472853]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rotdoor/hinge" unique_id=1904472853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0356779, 0)
 mesh = SubResource("BoxMesh_nb5wm")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="rotdoor" unique_id=1911243753]

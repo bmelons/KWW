@@ -36,7 +36,7 @@ func line_of_sight() -> bool: ## can the enemy SEEEE the player
 	query.exclude = [self]
 	var result = space.intersect_ray(query)
 	if result != {}:
-		var coll : CollisionObject3D = result.collider
+		var coll = result.collider
 		#print(coll.get_rid(), Main.player.get_rid(),coll.get_rid() == Main.player.get_rid())
 		if coll == Main.player:
 			return true

@@ -45,6 +45,9 @@ var lastScratch = 0
 var isScratchHurtboxEnabled := false
 var scratchBuffer = []
 
+@onready var hintBox : VBoxContainer = $Camera3D/hint/VBoxContainer
+@onready var hintPrefab : PackedScene = load("res://prefabs/hint.tscn")
+
 @onready var cam = $Camera3D;
 @onready var collider := $CollisionShape3D
 @onready var climbRay := $Camera3D/ClimbRay
@@ -84,6 +87,17 @@ func _ready() -> void:
 
 func get_hand_texture():
 	return load("uid://dn83aofwibgea")
+
+func spawn_hint(hint_content:String):
+	var hint : THint = hintPrefab.instantiate()
+	hintBox.add_child(hint);
+	hint.update_content(hint_content)
+	await get_tree().create_timer(1).timeout
+	var tw = get_tree().create_tween()
+	tw.tween_property(hint,"modulate",Color.TRANSPARENT,1)
+	tw.play()
+	await tw.finished
+	hint.queue_free()
 
 func set_current_gun(to:int):
 	if to+1 > GUNS.size():
